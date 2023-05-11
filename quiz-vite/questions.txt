@@ -1,0 +1,43 @@
+## JavaScript
+
+#### Q1. Which operator returns true if the two compared values are not equal?
+
+- [ ] `<>`
+- [ ] `~`
+- [ ] `==!`
+- [x] `!==`
+
+[Reference Javascript Comparison Operators](https://www.w3schools.com/js/js_operators.asp)
+
+#### Q2. How is a forEach statement different from a for statement?
+
+- [ ] Only a for statement uses a callback function.
+- [x] A for statement is generic, but a forEach statement can be used only with an array.
+- [ ] Only a forEach statement lets you specify your own iterator.
+- [ ] A forEach statement is generic, but a for statement can be used only with an array.
+
+[Reference Differences between forEach and for loop](https://www.geeksforgeeks.org/difference-between-foreach-and-for-loop-in-javascript/)
+
+#### Q3. Review the code below. Which statement calls the addTax function and passes 50 as an argument?
+
+```js
+function addTax(total) {
+  return total * 1.05;
+}
+```
+
+- [ ] `addTax = 50;`
+- [ ] `return addTax 50;`
+- [x] `addTax(50);`
+- [ ] `addTax 50;`
+
+[Reference functions in javascript](https://www.w3schools.com/js/js_functions.asp)
+
+#### Q4. Which statement is the correct way to create a variable called rate and assign it the value 100?
+
+- [x] `let rate = 100;`
+- [ ] `let 100 = rate;`
+- [ ] `100 = let rate;`
+- [ ] `rate = 100;`
+
+[Reference Javascript Assignment operators](https://www.w3schools.com/js/js_operators.asp)

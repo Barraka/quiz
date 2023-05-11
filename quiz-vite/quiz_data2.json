@@ -1,0 +1,90 @@
+[
+  [
+    "Q1. Which operator returns true if the two compared values are not equal?",
+    "",
+    [
+      {
+        "answer": "`<>`",
+        "correct": false
+      },
+      {
+        "answer": "`~`",
+        "correct": false
+      },
+      {
+        "answer": "`==!`",
+        "correct": false
+      },
+      {
+        "answer": "`!==`",
+        "correct": true
+      }
+    ]
+  ],
+  [
+    "Q2. How is a forEach statement different from a for statement?",
+    "",
+    [
+      {
+        "answer": "Only a for statement uses a callback function.",
+        "correct": false
+      },
+      {
+        "answer": "A for statement is generic, but a forEach statement can be used only with an array.",
+        "correct": true
+      },
+      {
+        "answer": "Only a forEach statement lets you specify your own iterator.",
+        "correct": false
+      },
+      {
+        "answer": "A forEach statement is generic, but a for statement can be used only with an array.",
+        "correct": false
+      }
+    ]
+  ],
+  [
+    "Q3. Review the code below. Which statement calls the addTax function and passes 50 as an argument?",
+    "```js\r\nfunction addTax(total) {\r\n  return total * 1.05;\r\n}\r\n```",
+    [
+      {
+        "answer": "`addTax = 50;`",
+        "correct": false
+      },
+      {
+        "answer": "`return addTax 50;`",
+        "correct": false
+      },
+      {
+        "answer": "`addTax(50);`",
+        "correct": true
+      },
+      {
+        "answer": "`addTax 50;`",
+        "correct": false
+      }
+    ]
+  ],
+  [
+    "Q4. Which statement is the correct way to create a variable called rate and assign it the value 100?",
+    "",
+    [
+      {
+        "answer": "`let rate = 100;`",
+        "correct": true
+      },
+      {
+        "answer": "`let 100 = rate;`",
+        "correct": false
+      },
+      {
+        "answer": "`100 = let rate;`",
+        "correct": false
+      },
+      {
+        "answer": "`rate = 100;`",
+        "correct": false
+      }
+    ]
+  ]
+]
