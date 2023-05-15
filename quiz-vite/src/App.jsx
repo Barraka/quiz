@@ -1,7 +1,7 @@
 import { createContext, useContext,useState, useEffect } from 'react'
 import Intro from './Intro'
 import './styles/styles.css';
-import data from './quiz_data.json';
+import data from '../quiz_data2.json';
 import Question from '../Question';
 
 export const QuizContext = createContext();

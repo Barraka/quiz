@@ -65,3 +65,12 @@ body {
     background-color: rgb(45, 100, 57);
     color: snow;
 }
+.code {
+    align-self: center;
+}
+pre {
+    text-align: left;
+    padding: 8px;
+    background-color: rgb(223, 231, 235);
+    border-radius: 8px;
+}

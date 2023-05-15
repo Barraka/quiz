@@ -8,8 +8,17 @@ function Question(props) {
             <div className="question">
                 {props.data.question} 
             </div>
+            {props.data.code ? 
+                <div className="code">
+                    <pre>
+                        {props.data.code}
+                    </pre>                
+                </div>  
+            : null}
+            
+
             <div className="answers">
-                {props.data.answers.map((x,i)=><div key={i} className="answerItem"><input type="checkbox" name="" /><div className="answerText">{x.answer}</div></div>)}
+                {props.data.answers?.map((x,i)=><div key={i} className="answerItem"><input type="checkbox" name="" /><div className="answerText">{x.answer}</div></div>)}
                 
             </div>
             <button className='btnConfirm'>Confirm</button>
