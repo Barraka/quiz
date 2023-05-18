@@ -26,7 +26,7 @@ body {
 .questionWrapper {
     display: flex;
     justify-content: center;
-    align-items: stretch;
+    align-items: center;
     flex-direction: column;
     text-align: center;
     background-color: rgb(91, 92, 121);
@@ -40,7 +40,7 @@ body {
     justify-content: center;
     align-items: stretch;
     flex-direction: column;
-    gap:5px;
+    gap:18px;
     padding: 10px 20px;
     border-radius: 8px;
     background-color: rgb(128, 153, 163);
@@ -50,7 +50,13 @@ body {
     justify-content: left;
     align-items: center;
     gap: 15px;
-    
+    cursor: pointer; 
+    border-radius: 8px;
+    padding: 4px 8px;
+    outline: 1px dotted rgb(82, 58, 119);
+}
+.answerItem:hover {
+    outline: 2px solid rgb(82, 58, 119);
 }
 .btnConfirm {
     align-self: center;
@@ -73,4 +79,98 @@ pre {
     padding: 8px;
     background-color: rgb(223, 231, 235);
     border-radius: 8px;
+}
+.userSelected {
+    outline: 2px solid cyan;
+}
+.right {
+    background-color: green;
+}
+.wrong {
+    background-color: red;
+}
+.danger {
+    color: rgb(190, 32, 32);
+    font-weight: bold;
+}
+.questionTimer {
+    background-color: rgb(128, 153, 163);
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+.question {
+    background-color: rgb(223, 231, 235);
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+.tooLate {
+    background-color: rgb(128, 153, 163);
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+.scoreWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 32px 0;
+    border-radius: 8px;
+    background-color: rgb(128, 153, 163);
+    font-size: 1.4rem;
+    gap: 12px;
+    margin-top: 32px;
+}
+.introText {
+    text-align: center;
+    padding: 32px 12px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    background-color: rgb(223, 231, 235);
+    line-height: 2.0;
+}
+.introTitle {
+    margin-bottom: 16px;
+    background-color: rgb(82, 58, 119);
+    border-radius: 8px;
+    color:aliceblue;
+    font-weight: bold;
+}
+.btn {
+    font-size: 1.2rem;
+    padding: 8px 24px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    outline: 2px solid transparent;
+    cursor: pointer;
+}
+.btnStart {
+    margin-top: 32px;
+}
+.textHighlight {
+    background-color: rgb(82, 58, 119);
+    color:rgb(223, 231, 235);
+    font-weight: bold;
+    padding: 2px 4px;
+    border-radius: 8px;
+}
+.quizWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 24px;
+    
+}
+.quizText {
+    background-color: rgb(91, 92, 121);
+    color: aliceblue;
+    padding: 8px 24px;
+    border-radius: 8px;
+    text-align: center;
+    /* width: 100%; */
+    /* align-self: stretch; */
+    min-width: 50vw;
+}
+.corrected {
+    outline: 2px solid green;
 }

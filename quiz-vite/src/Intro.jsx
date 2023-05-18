@@ -11,19 +11,15 @@ function Intro(props) {
 
     return (
         <div className='introWrapper'>
-            <div className="topicChooser">
-                Choose your topic:
+            <div className="introText">
+                <div className="introTitle">RULES:</div>
+                <p>This is a javascript speed quiz.</p>
+                <p>You have <span className='textHighlight'>20 seconds</span>  per question.</p>
+                <p>There are <span className='textHighlight'>10 questions</span> in total.</p>
+                <p>Sign up to be able to register your score.</p>
+                
             </div>
-            <select value={quizTopic} onChange={handleChange}>
-                <option value="General">General Javascript</option>
-                <option value="Asynchronous">Asynchronous javascript</option>
-                <option value="Objects">Objects and Object-Oriented Programming</option>
-                <option value="Functions">Functions</option>
-                <option value="Events">Events</option>
-                <option value="Ajax">Ajax</option>
-
-            </select>
-            <button onClick={launch}>Start</button>
+            <button onClick={launch} className='btnStart btn' >Start</button>
         </div>
     )
 }

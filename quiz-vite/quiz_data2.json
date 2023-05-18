@@ -143,19 +143,19 @@
     "code": "\r\nclass Animal {\r\n  static belly = [];\r\n  eat() {\r\n    Animal.belly.push('food');\r\n  }\r\n}\r\nlet a = new Animal();\r\na.eat();\r\nconsole.log(/* Snippet Here */); //Prints food\r\n",
     "answers": [
       {
-        "answer": "`a.prototype.belly[0",
+        "answer": "`a.prototype.belly[0]`",
         "correct": false
       },
       {
-        "answer": "`Object.getPrototype0f (a).belly[0",
+        "answer": "`Object.getPrototype0f (a).belly[0]`",
         "correct": false
       },
       {
-        "answer": "`Animal.belly[0",
+        "answer": "`Animal.belly[0]`",
         "correct": true
       },
       {
-        "answer": "`a.belly[0",
+        "answer": "`a.belly[0]`",
         "correct": false
       }
     ]
@@ -166,19 +166,19 @@
     "code": "",
     "answers": [
       {
-        "answer": " `A`\r\n\r\n```js\r\nfor (var i = 1; i <= 4; i++) {\r\n  setTimeout(function () {\r\n    console.log(i);\r\n  }, i * 10000);\r\n}\r\n```\r\n\r\n",
+        "answer": "`A`\r\n\r\n\r\nfor (var i = 1; i <= 4; i++) {\r\n  setTimeout(function () {\r\n    console.log(i);\r\n  }, i * 10000);\r\n}\r\n",
         "correct": false
       },
       {
-        "answer": " `B`\r\n\r\n```js\r\nfor (var i = 1; i <= 4; i++) {\r\n  (function (i) {\r\n    setTimeout(function () {\r\n      console.log(j);\r\n    }, j * 1000);\r\n  })(j);\r\n}\r\n```\r\n\r\n",
+        "answer": "`B`\r\n\r\n\r\nfor (var i = 1; i <= 4; i++) {\r\n  (function (i) {\r\n    setTimeout(function () {\r\n      console.log(j);\r\n    }, j * 1000);\r\n  })(j);\r\n}\r\n",
         "correct": false
       },
       {
-        "answer": " `C`\r\n\r\n```js\r\nfor (var i = 1; i <= 4; i++) {\r\n  setTimeout(function () {\r\n    console.log(i);\r\n  }, i * 1000);\r\n}\r\n```\r\n\r\n",
+        "answer": "`C`\r\n\r\n\r\nfor (var i = 1; i <= 4; i++) {\r\n  setTimeout(function () {\r\n    console.log(i);\r\n  }, i * 1000);\r\n}\r\n",
         "correct": false
       },
       {
-        "answer": " `D`\r\n\r\n```js\r\nfor (var i = 1; i <= 4; i++) {\r\n  (function (j) {\r\n    setTimeout(function () {\r\n      console.log(j);\r\n    }, j * 1000);\r\n  })(i);\r\n}\r\n```\r\n\r\n",
+        "answer": "`D`\r\n\r\n\r\nfor (var i = 1; i <= 4; i++) {\r\n  (function (j) {\r\n    setTimeout(function () {\r\n      console.log(j);\r\n    }, j * 1000);\r\n  })(i);\r\n}\r\n",
         "correct": true
       }
     ]
@@ -212,19 +212,19 @@
     "code": "",
     "answers": [
       {
-        "answer": " `A`\r\n\r\n```js\r\nlet discountPrice = function (price) {\r\n  return price * 0.85;\r\n};\r\n```\r\n\r\n",
+        "answer": "`A`\r\n\r\n\r\nlet discountPrice = function (price) {\r\n  return price * 0.85;\r\n};\r\n",
         "correct": true
       },
       {
-        "answer": " `B`\r\n\r\n```js\r\nlet discountPrice(price) {\r\n  return price * 0.85;\r\n};\r\n```\r\n\r\n",
+        "answer": "`B`\r\n\r\n\r\nlet discountPrice(price) {\r\n  return price * 0.85;\r\n};\r\n",
         "correct": false
       },
       {
-        "answer": " `C`\r\n\r\n```js\r\nlet function = discountPrice(price) {\r\n  return price * 0.85;\r\n};\r\n```\r\n\r\n",
+        "answer": "`C`\r\n\r\n\r\nlet function = discountPrice(price) {\r\n  return price * 0.85;\r\n};\r\n",
         "correct": false
       },
       {
-        "answer": " `D`\r\n\r\n```js\r\ndiscountPrice = function (price) {\r\n  return price * 0.85;\r\n};\r\n```\r\n\r\n[Reference defining javascript functions",
+        "answer": "`D`\r\n\r\n\r\ndiscountPrice = function (price) {\r\n  return price * 0.85;\r\n};\r\n",
         "correct": true
       }
     ]
@@ -258,20 +258,20 @@
     "code": "",
     "answers": [
       {
-        "answer": "Storm()",
+        "answer": "`/[0-9]{2,}:[0-9]{2,}:[0-9]{2,}/`",
         "correct": false
       },
       {
-        "answer": "undefined",
-        "correct": false
-      },
-      {
-        "answer": "'rain'",
-        "correct": false
-      },
-      {
-        "answer": "'snow'",
+        "answer": "`/\\d\\d:\\d\\d:\\d\\d/`",
         "correct": true
+      },
+      {
+        "answer": "`/[0-9]+:[0-9]+:[0-9]+/`",
+        "correct": false
+      },
+      {
+        "answer": "`/ : : /`\r\n\r\n**NOTE**: The first three are all partially correct and will match digits, but the **second option is the most correct** because it will **only** match **2 digit** time values (12:00:32). The first option would have worked if the repetitions range looked like `[0-9]{2}`, however because of the **comma** `[0-9]{2,}` it will select 2 **or more** digits (120:000:321). The third option will any range of time digits, single _and_ multiple (meaning `1:2:3` will also match).\r\n\r\n**More resources:**\r\n\r\n1. [Repeating characters](https://regexone.com/lesson/repeating_characters)\r\n2. [Kleene operators](https://regexone.com/lesson/kleene_operators)",
+        "correct": false
       }
     ]
   },
@@ -308,7 +308,7 @@
         "correct": false
       },
       {
-        "answer": "roadTypes\\[3\\",
+        "answer": "roadTypes\\[3\\]",
         "correct": false
       },
       {
@@ -316,7 +316,7 @@
         "correct": false
       },
       {
-        "answer": "roadTypes\\[2\\",
+        "answer": "roadTypes\\[2\\]",
         "correct": true
       }
     ]
@@ -485,23 +485,22 @@
   {
     "id": "Q22.",
     "question": "What will be logged to the console?",
-    "code": "",
+    "code": "\r\nvar a = ['dog', 'cat', 'hen'];\r\na[100] = 'fox';\r\nconsole.log(a.length);\r\n",
     "answers": [
       {
+        "answer": "101",
+        "correct": true
+      },
+      {
+        "answer": "3",
         "correct": false
       },
       {
-        "answer": ";",
+        "answer": "4",
         "correct": false
       },
       {
-        "answer": "= 'fox';",
-        "correct": false
-      },
-      {
-        "correct": false
-      },
-      {
+        "answer": "100",
         "correct": false
       }
     ]
@@ -524,7 +523,7 @@
         "correct": false
       },
       {
-        "answer": "You can access values in a Map without iterating over the whole collection.",
+        "answer": "You can access values in a Map without iterating over the whole collection.\r\n\r\n**Explanation:** `Map.prototype.size returns the number of elements in a Map, whereas Object does not have a built-in method to return its size.`",
         "correct": false
       }
     ]
@@ -762,18 +761,22 @@
   {
     "id": "Q34.",
     "question": "What is the result of running this code?",
-    "code": "\r\nsum(10, 20);\r\ndiff(10, 20);\r\nfunction sum(x, y) {\r\n  return x + y;\r\n}",
+    "code": "\r\nsum(10, 20);\r\ndiff(10, 20);\r\nfunction sum(x, y) {\r\n  return x + y;\r\n}let diff = function (x, y) {\r\n  return x - y;\r\n};\r\n",
     "answers": [
       {
+        "answer": "30, ReferenceError, 30, -10",
         "correct": false
       },
       {
+        "answer": "30, ReferenceError",
+        "correct": true
+      },
+      {
+        "answer": "30, -10",
         "correct": false
       },
       {
-        "correct": false
-      },
-      {
+        "answer": "ReferenceError, -10",
         "correct": false
       }
     ]
@@ -861,7 +864,7 @@
         "correct": false
       },
       {
-        "answer": "[",
+        "answer": "[]",
         "correct": false
       },
       {
@@ -896,18 +899,22 @@
   {
     "id": "Q40.",
     "question": "What will this code print?",
-    "code": "\r\nvar v = 1;\r\nvar f1 = function () {\r\n  console.log(v);\r\n};",
+    "code": "\r\nvar v = 1;\r\nvar f1 = function () {\r\n  console.log(v);\r\n};var f2 = function () {\r\n  var v = 2;\r\n  f1();\r\n};f2();\r\n",
     "answers": [
       {
+        "answer": "2",
         "correct": false
       },
       {
+        "answer": "1",
+        "correct": true
+      },
+      {
+        "answer": "Nothing - this code will throw an error.",
         "correct": false
       },
       {
-        "correct": false
-      },
-      {
+        "answer": "undefined",
         "correct": false
       }
     ]
@@ -953,7 +960,7 @@
         "correct": false
       },
       {
-        "answer": "You are calling a method named reduce on an object that's has a null value.",
+        "answer": "You are calling a method named reduce on an object that's has a null value.\r\n\r\n**Explanation**: `You cannot invoke reduce on undefined object... It will throw (yourObject is not Defined...)`",
         "correct": false
       }
     ]
@@ -1191,12 +1198,22 @@
   {
     "id": "Q53.",
     "question": "What will this code log in the console?",
-    "code": "\r\nfunction sayHello() {\r\n  console.log('hello');\r\n}",
+    "code": "\r\nfunction sayHello() {\r\n  console.log('hello');\r\n}console.log(sayHello.prototype);\r\n",
     "answers": [
       {
+        "answer": "undefined",
         "correct": false
       },
       {
+        "answer": "\"hello\"",
+        "correct": false
+      },
+      {
+        "answer": "an object with a constructor property",
+        "correct": true
+      },
+      {
+        "answer": "an error message",
         "correct": false
       }
     ]
@@ -1311,7 +1328,7 @@
         "correct": false
       },
       {
-        "answer": "to ensure that the call stack maintains a LIFO (Last in, First Out) structure",
+        "answer": "to ensure that the call stack maintains a LIFO (Last in, First Out) structure\r\n\r\n**EXPLANATION:** `\"to ensure that tasks further down in your code are not initiated until earlier tasks have completed\" you use the normal (synchronous) flow where each command is executed sequentially. Asynchronous code allows you to break this sequence: start a long running function (AJAX call to an external service) and continue running the rest of the code in parallel.`",
         "correct": false
       }
     ]
@@ -1322,7 +1339,7 @@
     "code": "",
     "answers": [
       {
-        "answer": "`[3",
+        "answer": "`[3] == [3]`",
         "correct": false
       },
       {
@@ -1606,6 +1623,10 @@
         "correct": false
       },
       {
+        "answer": "`function()() { console.log('lorem ipsum'); };`",
+        "correct": false
+      },
+      {
         "answer": "`(function() { console.log('lorem ipsum'); })();`",
         "correct": true
       }
@@ -1729,15 +1750,22 @@
   {
     "id": "Q77.",
     "question": "Which class-based component is equivalent to this function component?",
-    "code": "",
+    "code": "\r\nconst Greeting = ({ name }) => <h1>Hello {name}!</h1>;\r\n",
     "answers": [
       {
+        "answer": "`class Greeting extends React.Component { render() { return <h1>Hello {this.props.name}!</h1>; } }`",
+        "correct": true
+      },
+      {
+        "answer": "`class Greeting extends React.Component { constructor() { return <h1>Hello {this.props.name}!</h1>; } }`",
         "correct": false
       },
       {
+        "answer": "`class Greeting extends React.Component { <h>Hello {this.props.name}!</h>; } }`",
         "correct": false
       },
       {
+        "answer": "`class Greeting extends React.Component { render({ name }) { return <h1>Hello {name}!</h1>; } }`",
         "correct": false
       }
     ]
@@ -1840,8 +1868,20 @@
     "code": "\r\nconsole.log('I');\r\nsetTimeout(() => {\r\n  console.log('love');\r\n}, 0);\r\nconsole.log('Javascript!');\r\n",
     "answers": [
       {
-        "answer": ".",
+        "answer": ".\r\n\r\n\r\nI\r\nJavascript!\r\nlove\r\n",
         "correct": true
+      },
+      {
+        "answer": ".\r\n\r\n\r\nlove\r\nI\r\nJavascript!\r\n",
+        "correct": false
+      },
+      {
+        "answer": "The output may change with each execution of code and cannot be determined.",
+        "correct": false
+      },
+      {
+        "answer": ".\r\n\r\n\r\nI\r\nlove\r\nJavascript!\r\n",
+        "correct": false
       }
     ]
   },
@@ -1917,15 +1957,22 @@
   {
     "id": "Q86.",
     "question": "Which concept does this code illustrate?",
-    "code": "\r\nfunction makeAdder(x) {\r\n  return function (y) {\r\n    return x + y;\r\n  };\r\n}",
+    "code": "\r\nfunction makeAdder(x) {\r\n  return function (y) {\r\n    return x + y;\r\n  };\r\n}var addFive = makeAdder(5);\r\nconsole.log(addFive(3));\r\n",
     "answers": [
       {
+        "answer": "overloading",
         "correct": false
       },
       {
+        "answer": "closure",
         "correct": false
       },
       {
+        "answer": "currying",
+        "correct": true
+      },
+      {
+        "answer": "overriding",
         "correct": false
       }
     ]
@@ -1982,19 +2029,19 @@
     "code": "\r\nlet rainForests = ['Amazon', 'Borneo', 'Cerrado', 'Congo'];\r\nrainForests.splice(0, 2);\r\nconsole.log(rainForests);\r\n",
     "answers": [
       {
-        "answer": "`[\"Amazon\",\"Borneo\",\"Cerrado\",\"Congo\"",
+        "answer": "`[\"Amazon\",\"Borneo\",\"Cerrado\",\"Congo\"]`",
         "correct": false
       },
       {
-        "answer": "`[\"Cerrado\", \"Congo\"",
+        "answer": "`[\"Cerrado\", \"Congo\"]`",
         "correct": true
       },
       {
-        "answer": "`[\"Congo\"",
+        "answer": "`[\"Congo\"]`",
         "correct": false
       },
       {
-        "answer": "`[\"Amazon\",\"Borneo\"",
+        "answer": "`[\"Amazon\",\"Borneo\"]`",
         "correct": false
       }
     ]
@@ -2005,7 +2052,7 @@
     "code": "\r\nconst numbers = [1, 2, 3, 4, 5];\r\n//MISSING LINE\r\n",
     "answers": [
       {
-        "answer": "`const [one,two,three,four,five",
+        "answer": "`const [one,two,three,four,five]=numbers`",
         "correct": true
       },
       {
@@ -2013,7 +2060,7 @@
         "correct": false
       },
       {
-        "answer": "`const [one,two,three,four,five",
+        "answer": "`const [one,two,three,four,five]=[numbers]`",
         "correct": false
       },
       {
@@ -2025,18 +2072,22 @@
   {
     "id": "Q92.",
     "question": "What will this code print?",
-    "code": "\r\nconst obj = {\r\n  a: 1,\r\n  b: 2,\r\n  c: 3,\r\n};",
+    "code": "\r\nconst obj = {\r\n  a: 1,\r\n  b: 2,\r\n  c: 3,\r\n};const obj2 = {\r\n  ...obj,\r\n  a: 0,\r\n};console.log(obj2.a, obj2.b);\r\n",
     "answers": [
       {
+        "answer": "Nothing, it will throw an error",
         "correct": false
       },
       {
+        "answer": "0 2",
+        "correct": true
+      },
+      {
+        "answer": "undefined 2",
         "correct": false
       },
       {
-        "correct": false
-      },
-      {
+        "answer": "undefined 2",
         "correct": false
       }
     ]
@@ -2105,7 +2156,7 @@
         "correct": false
       },
       {
-        "answer": "Two",
+        "answer": "Two\r\n\r\n**Note:** `this question is same with Q46.`",
         "correct": true
       }
     ]
@@ -2113,10 +2164,22 @@
   {
     "id": "Q96.",
     "question": "How would you access the word It from this multidimensional array?",
-    "code": "",
+    "code": "`let matrix = [[\"You\",\"Can\"],[\"Do\",\"It\"],[\"!\",\"!\",\"!\"]];`",
     "answers": [
       {
-        "answer": ",[\"Do\",\"It\"",
+        "answer": "`matrix[1[2]]`",
+        "correct": false
+      },
+      {
+        "answer": "`matrix[1][1]`",
+        "correct": true
+      },
+      {
+        "answer": "`matrix[1,2]`",
+        "correct": false
+      },
+      {
+        "answer": "`matrix[1][2]`",
         "correct": false
       }
     ]
@@ -2208,7 +2271,7 @@
         "correct": true
       },
       {
-        "answer": "`bear[roar",
+        "answer": "`bear[roar]();`",
         "correct": false
       }
     ]
@@ -2262,13 +2325,22 @@
   {
     "id": "Q103.",
     "question": "What will be the output of this code?",
-    "code": "\r\nconst arr1 = [2, 4, 6];\r\nconst arr2 = [3, 5, 7];",
+    "code": "\r\nconst arr1 = [2, 4, 6];\r\nconst arr2 = [3, 5, 7];console.log([...arr1, ...arr2]);\r\n",
     "answers": [
       {
-        "answer": ");",
+        "answer": "`[2, 3, 4, 5, 6, 7]`",
         "correct": false
       },
       {
+        "answer": "`[3,5,7,2,4,6]`",
+        "correct": false
+      },
+      {
+        "answer": "`[3, 5, 7, 2, 4, 6]`",
+        "correct": false
+      },
+      {
+        "answer": "`[[2, 4, 6], [3, 5, 7]]`",
         "correct": false
       }
     ]
@@ -2368,24 +2440,22 @@
   {
     "id": "Q108.",
     "question": "What is the output that is printed when the div containing the text \"Click Here\" is clicked?",
-    "code": "\r\n//HTML Markup\r\n<div id=\"A\">\r\n  <div id=\"B\">\r\n    <div id=\"C\">Click Here</div>\r\n  </div>\r\n</div>\r\n",
+    "code": "\r\n//HTML Markup\r\n<div id=\"A\">\r\n  <div id=\"B\">\r\n    <div id=\"C\">Click Here</div>\r\n  </div>\r\n</div>\r\n\r\n//JavaScript\r\ndocument.querySelectorAll('div').forEach((e) => {\r\n  e.onclick = (e) => console.log(e.currentTarget.id);\r\n});\r\n",
     "answers": [
       {
+        "answer": "C B A",
+        "correct": true
+      },
+      {
+        "answer": "A",
         "correct": false
       },
       {
+        "answer": "C",
         "correct": false
       },
       {
-        "correct": false
-      },
-      {
-        "correct": false
-      },
-      {
-        "correct": false
-      },
-      {
+        "answer": "A B C",
         "correct": false
       }
     ]
@@ -2396,19 +2466,19 @@
     "code": "\r\nconst myNumbers = [1, 2, 3, 4, 5, 6, 7];\r\nconst myFunction = (arr) => {\r\n  return arr.map((x) => x + 3).filter((x) => x < 7);\r\n};\r\nconsole.log(myFunction(myNumbers));\r\n",
     "answers": [
       {
-        "answer": "`[4,5,6,7,8,9,10",
+        "answer": "`[4,5,6,7,8,9,10]`",
         "correct": false
       },
       {
-        "answer": "`[4,5,6,7",
+        "answer": "`[4,5,6,7]`",
         "correct": false
       },
       {
-        "answer": "`[1,2,3,4,5,6",
+        "answer": "`[1,2,3,4,5,6]`",
         "correct": false
       },
       {
-        "answer": "`[4,5,6",
+        "answer": "`[4,5,6]`",
         "correct": true
       }
     ]
@@ -2416,18 +2486,22 @@
   {
     "id": "Q110.",
     "question": "What does this code print to the console?",
-    "code": "\r\nlet rainForestAcres = 10;\r\nlet animals = 0;",
+    "code": "\r\nlet rainForestAcres = 10;\r\nlet animals = 0;while (rainForestAcres < 13 || animals <= 2) {\r\n  rainForestAcres++;\r\n  animals += 2;\r\n}console.log(animals);\r\n",
     "answers": [
       {
+        "answer": "2",
         "correct": false
       },
       {
+        "answer": "4",
         "correct": false
       },
       {
-        "correct": false
+        "answer": "6",
+        "correct": true
       },
       {
+        "answer": "8",
         "correct": false
       }
     ]
@@ -2435,9 +2509,22 @@
   {
     "id": "Q111.",
     "question": "Which snippet could you add to this code to print \"YOU GOT THIS\" to the console?",
-    "code": "\r\nlet cipherText = [...'YZOGUT QGMORTZ MTRHTILS'];\r\nlet plainText = '';",
+    "code": "\r\nlet cipherText = [...'YZOGUT QGMORTZ MTRHTILS'];\r\nlet plainText = '';/* Missing Snippet */console.log(plainText); //Prints YOU GOT THIS\r\n",
     "answers": [
       {
+        "answer": "A\r\n\r\n\r\nfor (let key of cipherText.keys()) {\r\n  plainText += key % 2 === 0 ? key : ' ';\r\n}\r\n",
+        "correct": false
+      },
+      {
+        "answer": "B\r\n\r\n\r\nfor (let [index, value] of cipherText.entries()) {\r\n  plainText += index % 2 !== 0 ? value : '';\r\n}\r\n",
+        "correct": false
+      },
+      {
+        "answer": "C\r\n\r\n\r\nfor (let [index, value] of cipherText.entries()) {\r\n  plainText += index % 2 === 0 ? value : '';\r\n}\r\n",
+        "correct": true
+      },
+      {
+        "answer": "D\r\n\r\n\r\nfor (let value of cipherText) {\r\n  plainText += value;\r\n}\r\n",
         "correct": false
       }
     ]
@@ -2460,7 +2547,7 @@
         "correct": false
       },
       {
-        "answer": "Squirtle",
+        "answer": "Squirtle\r\n\r\n**Explanation**: `The pop() method removes the last element from an array and returns that element. This method changes the length of the array.`",
         "correct": false
       }
     ]
@@ -2468,24 +2555,22 @@
   {
     "id": "Q113.",
     "question": "Which statement can be used to select the element from the DOM containing the text \"The LinkedIn Learning library has great JavaScript courses\" from this markup?",
-    "code": "",
+    "code": "\r\n<h1 class=\"content\">LinkedIn Learning</h1>\r\n<div class=\"content\">\r\n  <span class=\"content\">The LinkedIn Learning library has great JavaScript courses!</span>\r\n</div>\r\n",
     "answers": [
       {
+        "answer": "document.querySelector(\"div.content\")",
         "correct": false
       },
       {
+        "answer": "document.querySelector(\"span.content\")",
+        "correct": true
+      },
+      {
+        "answer": "document.querySelector(\".content\")",
         "correct": false
       },
       {
-        "correct": false
-      },
-      {
-        "correct": false
-      },
-      {
-        "correct": false
-      },
-      {
+        "answer": "document.querySelector(\"div.span\")",
         "correct": false
       }
     ]
@@ -2496,7 +2581,7 @@
     "code": "",
     "answers": [
       {
-        "answer": "`[",
+        "answer": "`[]`",
         "correct": true
       },
       {
@@ -2516,18 +2601,22 @@
   {
     "id": "Q115.",
     "question": "What line of code causes this code segment to throw an error?",
-    "code": "\r\nconst lion = 1;\r\nlet tiger = 2;\r\nvar bear;",
+    "code": "\r\nconst lion = 1;\r\nlet tiger = 2;\r\nvar bear;++lion;\r\nbear += lion + tiger;\r\ntiger++;\r\n",
     "answers": [
       {
+        "answer": "`line 5, because lion cannot be reassigned a value`",
+        "correct": true
+      },
+      {
+        "answer": "`line 6, because the += operator cannot be used with the undefined variable bear`",
         "correct": false
       },
       {
+        "answer": "`line 5, because the prefix (++) operator does not exist in JavaScript`",
         "correct": false
       },
       {
-        "correct": false
-      },
-      {
+        "answer": "`line 3, because the variable bear is left undefined`",
         "correct": false
       }
     ]
@@ -2542,15 +2631,15 @@
         "correct": false
       },
       {
-        "answer": "`[\"Name\", \"Age\", \"HairColor\"",
+        "answer": "`[\"Name\", \"Age\", \"HairColor\"]`",
         "correct": false
       },
       {
-        "answer": "`[\"DAVE\", 40, \"BLUE\"",
+        "answer": "`[\"DAVE\", 40, \"BLUE\"]`",
         "correct": false
       },
       {
-        "answer": "`[\"NAME\", \"AGE\", \"HAIRCOLOR\"",
+        "answer": "`[\"NAME\", \"AGE\", \"HAIRCOLOR\"]`",
         "correct": true
       }
     ]
@@ -2558,37 +2647,45 @@
   {
     "id": "Q117.",
     "question": "Which snippet could you insert to this code to print \"swim\" to the console?",
-    "code": "\r\nlet animals = [\"eagle\", \"osprey\", \"salmon\"];\r\nlet key = animal => animal === \"salmon\";",
+    "code": "\r\nlet animals = [\"eagle\", \"osprey\", \"salmon\"];\r\nlet key = animal => animal === \"salmon\";if(/* Insert Snippet Here */){\r\n  console.log(\"swim\");\r\n}\r\n",
     "answers": [
       {
+        "answer": "`animals.every(key)`",
         "correct": false
       },
       {
+        "answer": "`animals.some(key).length === 1`",
         "correct": false
       },
       {
+        "answer": "`animals.filter(key) === true`",
         "correct": false
       },
       {
-        "correct": false
+        "answer": "`animals.some(key)`",
+        "correct": true
       }
     ]
   },
   {
     "id": "Q118.",
     "question": "What is the output of this code?",
-    "code": "\r\nclass RainForest {\r\n  static minimumRainFall = 60;\r\n}",
+    "code": "\r\nclass RainForest {\r\n  static minimumRainFall = 60;\r\n}let congo = new RainForest();\r\nRainForest.minimumRainFall = 80;\r\nconsole.log(congo.minimumRainFall);\r\n",
     "answers": [
       {
+        "answer": "`undefined`",
+        "correct": true
+      },
+      {
+        "answer": "`None of these answers, as static is not a feature in Javascript.`",
         "correct": false
       },
       {
+        "answer": "`60`",
         "correct": false
       },
       {
-        "correct": false
-      },
-      {
+        "answer": "`80`",
         "correct": false
       }
     ]
@@ -2607,7 +2704,7 @@
         "correct": true
       },
       {
-        "answer": "`obj[a",
+        "answer": "`obj[a][b]`",
         "correct": false
       },
       {
@@ -2645,19 +2742,19 @@
     "code": "\r\nconst x = [1, 2];\r\nconst y = [5, 7];\r\nconst z = [...x, ...y];\r\nconsole.log(z);\r\n",
     "answers": [
       {
-        "answer": "`[1,2,5,7",
+        "answer": "`[1,2,5,7]`",
         "correct": true
       },
       {
-        "answer": "`[[1, 2",
+        "answer": "`[[1, 2], [5, 7]]`",
         "correct": false
       },
       {
-        "answer": "`[2,7",
+        "answer": "`[2,7]`",
         "correct": false
       },
       {
-        "answer": "`[2,1,7,5",
+        "answer": "`[2,1,7,5]`",
         "correct": false
       }
     ]
@@ -2668,7 +2765,7 @@
     "code": "\r\nconst a = { x: 1 };\r\nconst b = { x: 1 };\r\n",
     "answers": [
       {
-        "answer": "`a['x'",
+        "answer": "`a['x'] === b['x']`",
         "correct": false
       },
       {
@@ -2734,18 +2831,22 @@
   {
     "id": "Q125.",
     "question": "What does this code print to the console?",
-    "code": "\r\nlet bear = {\r\n  sound: 'roar',\r\n  roar() {\r\n    console.log(this.sound);\r\n  },\r\n};",
+    "code": "\r\nlet bear = {\r\n  sound: 'roar',\r\n  roar() {\r\n    console.log(this.sound);\r\n  },\r\n};bear.sound = 'grunt';\r\nlet bearSound = bear.roar;\r\nbearSound();\r\n",
     "answers": [
       {
+        "answer": "`Nothing is printed to the console.`",
         "correct": false
       },
       {
+        "answer": "`grunt`",
         "correct": false
       },
       {
-        "correct": false
+        "answer": "`undefined`",
+        "correct": true
       },
       {
+        "answer": "`roar`",
         "correct": false
       }
     ]
@@ -2753,18 +2854,22 @@
   {
     "id": "Q126.",
     "question": "What is the output of this code?",
-    "code": "\r\nvar cat = { name: 'Athena' };",
+    "code": "\r\nvar cat = { name: 'Athena' };function swap(feline) {\r\n  feline.name = 'Wild';\r\n  feline = { name: 'Tabby' };\r\n}swap(cat);\r\nconsole.log(cat.name);\r\n",
     "answers": [
       {
+        "answer": "undefined",
         "correct": false
       },
       {
+        "answer": "Wild",
+        "correct": true
+      },
+      {
+        "answer": "Tabby",
         "correct": false
       },
       {
-        "correct": false
-      },
-      {
+        "answer": "Athena",
         "correct": false
       }
     ]
@@ -2772,96 +2877,68 @@
   {
     "id": "Q127.",
     "question": "What will this code output to the log?",
-    "code": "",
+    "code": "\r\nvar thing;\r\nlet func = (str = 'no arg') => {\r\n  console.log(str);\r\n};\r\nfunc(thing);\r\nfunc(null);\r\n",
     "answers": [
       {
+        "answer": "null no arg",
         "correct": false
       },
       {
+        "answer": "no arg no arg",
         "correct": false
       },
       {
+        "answer": "null null",
         "correct": false
       },
       {
-        "correct": false
-      },
-      {
-        "correct": false
-      },
-      {
-        "correct": false
-      },
-      {
-        "correct": false
-      },
-      {
-        "correct": false
+        "answer": "no arg null",
+        "correct": true
       }
     ]
   },
   {
     "id": "Q128.",
     "question": "What will this code print to the console?",
-    "code": "",
+    "code": "\r\nconst myFunc = () => {\r\n  const a = 2;\r\n  return () => console.log('a is ' + a);\r\n};\r\nconst a = 1;\r\nconst test = myFunc();\r\ntest();\r\n",
     "answers": [
       {
+        "answer": "a is 1",
         "correct": false
       },
       {
+        "answer": "a is undefined",
         "correct": false
       },
       {
+        "answer": "It won't print anything.",
         "correct": false
       },
       {
-        "correct": false
-      },
-      {
-        "correct": false
-      },
-      {
-        "correct": false
-      },
-      {
-        "correct": false
-      },
-      {
-        "correct": false
-      },
-      {
-        "correct": false
+        "answer": "a is 2",
+        "correct": true
       }
     ]
   },
   {
     "id": "Q129.",
     "question": "What will this code print to the console?",
-    "code": "",
+    "code": "\r\nconst myFunc = (num1, num2 = 2, num3 = 2) => {\r\n  return num1 + num2 + num3;\r\n};\r\nlet values = [1, 5];\r\nconst test = myFunc(2, ...values);\r\nconsole.log(test);\r\n",
     "answers": [
       {
+        "answer": "8",
+        "correct": true
+      },
+      {
+        "answer": "6",
         "correct": false
       },
       {
+        "answer": "2",
         "correct": false
       },
       {
-        "correct": false
-      },
-      {
-        "correct": false
-      },
-      {
-        "answer": ";",
-        "correct": false
-      },
-      {
-        "correct": false
-      },
-      {
-        "correct": false
-      },
-      {
+        "answer": "12",
         "correct": false
       }
     ]
@@ -2869,12 +2946,22 @@
   {
     "id": "Q130.",
     "question": "Which code would you use to access the Irish flag?",
-    "code": "\r\nvar flagsJSON =\r\n  '{ \"countries\" : [' +\r\n  '{ \"country\":\"Ireland\" , \"flag\":\"🇮🇪\" },' +\r\n  '{ \"country\":\"Serbia\" , \"flag\":\"🇷🇸\" },' +\r\n  '{ \"country\":\"Peru\" , \"flag\":\"🇵🇪\" } ]}';",
+    "code": "\r\nvar flagsJSON =\r\n  '{ \"countries\" : [' +\r\n  '{ \"country\":\"Ireland\" , \"flag\":\"🇮🇪\" },' +\r\n  '{ \"country\":\"Serbia\" , \"flag\":\"🇷🇸\" },' +\r\n  '{ \"country\":\"Peru\" , \"flag\":\"🇵🇪\" } ]}';var flagDatabase = JSON.parse(flagsJSON);\r\n",
     "answers": [
       {
+        "answer": "flagDatabase.countries[1].flag",
         "correct": false
       },
       {
+        "answer": "flagDatabase.countries[0].flag",
+        "correct": true
+      },
+      {
+        "answer": "flagDatabase[1].flag",
+        "correct": false
+      },
+      {
+        "answer": "flagsJSON.countries[0].flag",
         "correct": false
       }
     ]
@@ -2882,30 +2969,22 @@
   {
     "id": "Q131.",
     "question": "Which snippet allows the acresOfRainForest variable to increase?",
-    "code": "",
+    "code": "\r\nlet conservation = true;\r\nlet deforestation = false;\r\nlet acresOfRainForest = 100;\r\nif (/* Snipped goes here */){\r\n    ++acresOfRainForest;\r\n}\r\n",
     "answers": [
       {
+        "answer": "conservation && !deforestation",
+        "correct": true
+      },
+      {
+        "answer": "!deforestation && !conservation",
         "correct": false
       },
       {
+        "answer": "!conservation || deforestation",
         "correct": false
       },
       {
-        "correct": false
-      },
-      {
-        "correct": false
-      },
-      {
-        "correct": false
-      },
-      {
-        "correct": false
-      },
-      {
-        "correct": false
-      },
-      {
+        "answer": "deforestation && conservation || deforestation",
         "correct": false
       }
     ]
@@ -2959,12 +3038,22 @@
   {
     "id": "Q134.",
     "question": "What value is printed to the console after this code execute?",
-    "code": "\r\nlet cat = Object.create({ type: 'lion' });\r\ncat.size = 'large';",
+    "code": "\r\nlet cat = Object.create({ type: 'lion' });\r\ncat.size = 'large';let copyCat = { ...cat };\r\ncat.type = 'tiger';console.log(copyCat.type, copyCat.size);\r\n",
     "answers": [
       {
+        "answer": "tiger large",
         "correct": false
       },
       {
+        "answer": "lion undefined",
+        "correct": false
+      },
+      {
+        "answer": "undefined large",
+        "correct": true
+      },
+      {
+        "answer": "lion large",
         "correct": false
       }
     ]
@@ -2972,14 +3061,22 @@
   {
     "id": "Q135.",
     "question": "What does this code print to the console?",
-    "code": "\r\nlet animals = [{ type: 'lion' }, 'tiger'];\r\nlet clones = animals.slice();",
+    "code": "\r\nlet animals = [{ type: 'lion' }, 'tiger'];\r\nlet clones = animals.slice();clones[0].type = 'bear';\r\nclones[1] = 'sheep';console.log(animals[0].type, clones[0].type);\r\nconsole.log(animals[1], clones[1]);\r\n",
     "answers": [
       {
-        "answer": ".type = 'bear';",
+        "answer": "bear bear\r\n      tiger sheep",
+        "correct": true
+      },
+      {
+        "answer": "lion bear\r\n      sheep sheep",
         "correct": false
       },
       {
-        "answer": "= 'sheep';",
+        "answer": "bear bear\r\n      tiger tiger",
+        "correct": false
+      },
+      {
+        "answer": "lion bear\r\n      tiger sheep",
         "correct": false
       }
     ]
@@ -2987,21 +3084,22 @@
   {
     "id": "Q136.",
     "question": "What will be the output of the following code.",
-    "code": "",
+    "code": "\r\na=5;\r\nb=4;\r\nalert(a++(+(+(+b))));\r\n",
     "answers": [
       {
+        "answer": "18",
         "correct": false
       },
       {
+        "answer": "10",
         "correct": false
       },
       {
-        "correct": false
+        "answer": "9",
+        "correct": true
       },
       {
-        "correct": false
-      },
-      {
+        "answer": "20",
         "correct": false
       }
     ]
@@ -3009,9 +3107,22 @@
   {
     "id": "Q137.",
     "question": "Which snippet could you add to this code to print \"{\"type\": \"tiger\"}\" to the console?",
-    "code": "\r\nlet cat = { type: \"tiger\", size: \"large\" };",
+    "code": "\r\nlet cat = { type: \"tiger\", size: \"large\" };let json = /* Snippet here */;console.log(json); // print {\"type\":\"tiger\"}\r\n",
     "answers": [
       {
+        "answer": "`cat.toJSON(\"type\");`",
+        "correct": false
+      },
+      {
+        "answer": "`JSON.stringify(cat, [\"type\"]);`",
+        "correct": true
+      },
+      {
+        "answer": "`JSON.stringify(cat);`",
+        "correct": false
+      },
+      {
+        "answer": "`JSON.stringify(cat, /type/);`",
         "correct": false
       }
     ]
@@ -3088,18 +3199,22 @@
   {
     "id": "Q141.",
     "question": "What will be the output of the following code snippet?",
-    "code": "",
+    "code": "\r\nconst obj1 = { first: 20, second: 30, first: 50 };\r\nconsole.log(obj1);\r\n",
     "answers": [
       {
+        "answer": "first: 30 , second: 50",
         "correct": false
       },
       {
+        "answer": "first: 50 , second: 30",
+        "correct": true
+      },
+      {
+        "answer": "first: 30 , second: 20",
         "correct": false
       },
       {
-        "correct": false
-      },
-      {
+        "answer": "None of the above",
         "correct": false
       }
     ]
@@ -3176,15 +3291,22 @@
   {
     "id": "Q145.",
     "question": "What will be the output of the following code snippet?",
-    "code": "",
+    "code": "\r\nprint(typeof NaN);\r\n",
     "answers": [
       {
+        "answer": "Object",
         "correct": false
       },
       {
+        "answer": "Number",
+        "correct": true
+      },
+      {
+        "answer": "String",
         "correct": false
       },
       {
+        "answer": "None of the above",
         "correct": false
       }
     ]
@@ -3192,16 +3314,23 @@
   {
     "id": "Q146.",
     "question": "What will be the output of the following code snippet?",
-    "code": "",
+    "code": "\r\n<script type=\"text/javascript\">a = 5 + \"9\"; document.write(a);</script>\r\n",
     "answers": [
       {
+        "answer": "Compilation Error",
         "correct": false
       },
       {
+        "answer": "14",
         "correct": false
       },
       {
+        "answer": "Runtime Error",
         "correct": false
+      },
+      {
+        "answer": "59",
+        "correct": true
       }
     ]
   },
@@ -3392,12 +3521,22 @@
   {
     "id": "Q155.",
     "question": "Which line is missing from this code if you expect the code to evaluate to true?",
-    "code": "\r\nvar compare = function(test1, test2) {\r\n    // Missing line\r\n}",
+    "code": "\r\nvar compare = function(test1, test2) {\r\n    // Missing line\r\n}compare(1078, \"1078\"); // yields true\r\n",
     "answers": [
       {
+        "answer": "`test1==test2;`",
         "correct": false
       },
       {
+        "answer": "return test1===test2;",
+        "correct": false
+      },
+      {
+        "answer": "return test1==test2;",
+        "correct": true
+      },
+      {
+        "answer": "return test1!=test2;",
         "correct": false
       }
     ]

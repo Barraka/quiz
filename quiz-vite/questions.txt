@@ -906,6 +906,7 @@ button.addEventListener(
 
 - [ ] `function() { console.log('lorem ipsum'); }()();`
 - [ ] `function() { console.log('lorem ipsum'); }();`
+- [ ] `function()() { console.log('lorem ipsum'); };`
 - [x] `(function() { console.log('lorem ipsum'); })();`
 
 [Reference what is an Immediately Invoked Function Expression](https://javascript.plainenglish.io/https-medium-com-javascript-in-plain-english-stop-feeling-iffy-about-using-an-iife-7b0292aba174)
