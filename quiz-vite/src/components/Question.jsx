@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, useContext } from 'react'
+import host from '../host';
 
 function Question(props) {
     const [userAnswer, setUserAnswer] = useState(-1);
@@ -37,7 +38,7 @@ function Question(props) {
         setUserAnswer(i);
     }
 
-    function handleAnswer(e, late=false) {
+    async function handleAnswer(e, late=false) {
         if(choice)return;
         setChoice(true);
         clearInterval(timerInterval.current);
@@ -46,11 +47,18 @@ function Question(props) {
             setNext(true);
             return;
         }
-        console.log('answers: ', props.data.answers);
-        console.log('user : ', userAnswer);
-        let correctIndex = props.data.answers.findIndex(answer => answer.correct === true);
-        console.log('index: ', correctIndex);
-        // const result = props.data.answers[userAnswer].correct;
+        const postBody= props.data;
+        postBody.userAnswer=userAnswer;
+        console.log('postBody: ', postBody);
+        const step1 = await fetch(host+'/getanswer', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",               
+            },
+            body: JSON.stringify(postBody),
+        });;
+        const data = await step1.json();
+        let correctIndex = data.answer.answers.findIndex(answer => answer.correct === true);
         const selectedRef = answerRefs.current[userAnswer];
         if(correctIndex===userAnswer) {
             selectedRef.current.classList.add("right");

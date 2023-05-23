@@ -1,0 +1,71 @@
+.profileWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: fit-content;
+    background-color: rgb(192, 180, 216);
+    border-radius: 8px;
+    padding: 8px 16px 32px;
+    margin: auto;
+    gap: 16px;
+}
+.closeWrapper {
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: border 0.4s ease;
+    fill: rgb(71, 15, 94);
+}
+.closeWrapper:hover {
+    border:2px solid rgb(71, 15, 94);
+}
+
+.btnEditUsername {
+    align-self: center;
+    padding: 5px 15px;
+    border-radius: 6px;
+    outline: 2px solid transparent;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+    
+}
+.btnEditUsername:hover {
+    background-color: rgb(100, 45, 88);
+    color: snow;
+}
+.profileUsername {
+    background-color:  rgb(136, 82, 124);
+    color:aliceblue;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 6px 16px;;
+}
+
+.statsWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;    
+    gap: 8px;
+    background-color: rgb(100, 45, 88);
+    padding: 6px 16px;
+    border-radius: 8px;
+    color: aliceblue;
+    margin-top: 32px;
+}
+.btnLogout {
+    /* align-self: center; */
+    padding: 5px 15px;
+    border-radius: 6px;
+    outline: 2px solid transparent;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+    margin-top: 16px;
+}

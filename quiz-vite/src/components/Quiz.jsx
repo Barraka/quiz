@@ -1,15 +1,17 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Question from './Question';
 import {QuizContext} from '../App';
+import host from '../host';
 
 function Quiz(props) {
     const {allQuestions, setOver, score, setScore, timer, setTimer} = useContext(QuizContext);
     const [qCounter, setQCounter] = useState(0);
-    
+    const [quiz, setQuiz] = useState([]);
     const [currentQuestion, setCurrentQuestion] = useState();    
 
     useEffect(()=>{
-        chooseQuestion();
+        initQuiz();
+        nextQuestion();
         const timerInterval = setInterval(()=> {
             setTimer(prev=>prev+1);
         },1000);
@@ -22,24 +24,51 @@ function Quiz(props) {
     
     },[qCounter]);
 
-    function chooseQuestion() {
+    async function initQuiz() {
+        await fetch(host+'/initquiz', {
+            method: "POST",
+            credentials: 'include',
+        });
+        // const step2 = await step1.json();
+    }
+
+    async function nextQuestion() {
         setCurrentQuestion(null);
         if(qCounter===10) {
             setOver(true);
             return;
         }
         setQCounter(prev=>prev+1);
-        console.log('qCounter: ', qCounter);
-        const randQ = Math.floor(Math.random() * allQuestions.length);
-        const currentQ = allQuestions[randQ];
-        console.log('currentQ: ', currentQ);
-        setTimeout(()=> {
-            setCurrentQuestion(currentQ);
-        });        
+        const postBody={
+            alreadyAnswered: quiz,
+        };
+        const step1 = await fetch(host+'/getquestion', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",               
+            },
+            body: JSON.stringify(postBody),
+        });
+        const step2 = await step1.json();
+        setCurrentQuestion(step2.question);
     }
+
+    // function chooseQuestion() {
+    //     setCurrentQuestion(null);
+    //     if(qCounter===10) {
+    //         setOver(true);
+    //         return;
+    //     }
+    //     setQCounter(prev=>prev+1);
+    //     console.log('qCounter: ', qCounter);
+    //     const randQ = Math.floor(Math.random() * allQuestions.length);
+    //     const currentQ = allQuestions[randQ];
+    //     console.log('currentQ: ', currentQ);       
+    // }
 
     function incrementScore() {
         setScore(prev=>prev+1);
+        console.log('score: ', score);
     }
     function formatTime(seconds) {
         const minutes = Math.floor(seconds / 60);
@@ -64,7 +93,7 @@ function Quiz(props) {
             
             
             
-            {currentQuestion ? <Question data={currentQuestion} next={chooseQuestion} qCounter={qCounter} incrementScore={incrementScore}/> : null}
+            {currentQuestion ? <Question data={currentQuestion} next={nextQuestion} qCounter={qCounter} incrementScore={incrementScore}/> : null}
         </div>
     )
 }

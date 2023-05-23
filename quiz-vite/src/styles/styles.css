@@ -174,3 +174,29 @@ pre {
 .corrected {
     outline: 2px solid green;
 }
+.navbarWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(82, 58, 119);
+    color: aliceblue;
+    gap: 24px;
+    padding: 8px;
+}
+.btnNavbar {
+    /* font-size: 1.rem; */
+    padding: 8px 24px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    outline: 2px solid transparent;
+    cursor: pointer;
+}
+.userWrapper {
+    fill: rgb(202, 162, 218);
+    cursor: pointer;
+    transition: fill 0.4s ease;
+}
+.userWrapper:hover {
+    fill: aliceblue;
+
+}

@@ -1,7 +1,7 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const bcrypt = require('bcryptjs');
-const {db, User} = require('./connect');
+const {User} = require('./connect');
 require('dotenv').config();
 
 //----Passport config
@@ -12,7 +12,9 @@ passport.use(
         session: true // Use JWT and not session //actually yes
         },
         (email, password, callback) => {
-            User.findOne({_id: email.toLowerCase()})
+            console.log('email: ', email);
+            console.log('pwd: ', password);
+            User.findOne({email: email.toLowerCase()})
             .then(user => {
                 if(!user) {
                     return callback(null, false, {message: "User not found" });

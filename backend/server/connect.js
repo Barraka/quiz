@@ -32,5 +32,39 @@ const Question = mongoose.model(
     })
 );
 
+const Result = mongoose.model(
+    "Result",
+    new Schema({
+        user: { type: String, required: true },
+        score: { type: Number, required: true },
+        timer: { type: Number, required: true },
+    })
+);
 
-module.exports = {Question};
+const User = mongoose.model(
+    "User",
+    new Schema({
+        username: { type: String, required: true },
+        email: { type: String, required: true },
+        password: { type: String, required: true },
+        admin: { type: Boolean, required: true },
+        joined: {type: Date, required: true },
+        provider: {type: String, required: true },
+        googleID: {type: String, required: false },
+    })
+);
+
+const PendingQuiz = mongoose.model(
+    "PendingQuiz",
+    new Schema({
+        email: { type: String, required: true },
+        started: { type: Date, required: true },
+        questionsID: {type: Array, required: true },
+        questionsTimestamp: {type: Array, required: true },
+        answersTimestamp: {type: Array, required: true },
+        score: {type: Array, required: true },
+    })
+);
+
+
+module.exports = {Question, Result, User, PendingQuiz};

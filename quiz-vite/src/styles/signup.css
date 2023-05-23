@@ -1,0 +1,130 @@
+:root {
+    --red: rgb(156, 13, 13);
+    --green: rgb(46, 138, 34);
+}
+.signupInner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 400px;
+    width: fit-content;
+    background-color: rgb(192, 180, 216);
+    margin:auto;
+    border-radius: 8px;
+    padding-bottom: 32px;
+    padding: 8px 16px;
+}
+.closeWrapper {
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: border 0.4s ease;
+    fill: rgb(71, 15, 94);
+}
+.closeWrapper:hover {
+    border:2px solid rgb(71, 15, 94);
+}
+.signupInput {
+    font: inherit;
+    border-radius: 8px;
+    outline: 2px solid transparent;
+    border: 2px solid transparent;
+    transition: outline 0.5s ease-in, border 0.5s ease-in;
+    text-align: center;
+    padding: 0 16px;
+}
+.signupInput:focus {
+    outline: 2px solid rgb(73, 34, 105);
+}
+.signupForm {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+}
+.formGroup {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+    text-align: center;
+    padding: 12px 2px;
+    gap: 4px;
+    position: relative;
+    /* outline: 1px solid red; */
+}
+.signupInput {
+    font: inherit;
+    border-radius: 8px;
+    outline: 2px solid transparent;
+    border: 2px solid transparent;
+    transition: outline 0.5s ease-in, border 0.5s ease-in;
+    text-align: center;
+}
+.signupInput:focus {
+    outline: 2px solid var(--palette5);
+}
+.btnSignup {
+    font-size: 1.2rem;
+    border: 2px solid transparent;
+    transition: border 0.5s ease-in, color 0.5s ease-in, background 0.5s ease-in;
+    cursor:auto;
+} 
+
+.inputError {
+    outline: 2px solid var(--red);
+}
+.inputValid {
+    outline: 2px solid var(--green);
+}
+.errorOutput {
+    height: 1.4rem;
+    font-size: 0.9rem;
+}
+.checkmark {
+    position: absolute;
+    fill: var(--green);
+    stroke: var(--green);
+    top: 14;
+    /* left: -10px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.4s ease-in;
+    background-color: var(--textLight);
+    border-radius: 50%;
+}
+.checkmarkHidden {
+    transform: scale(0);
+}
+.invalid {
+    position: absolute;
+    fill: var(--red);
+    stroke: var(--red);
+    top: 40px;
+    /* left: -10px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.4s ease-in;
+    background-color: var(--textLight);
+    border-radius: 50%;
+}
+.invalidHidden {
+    transform: scale(0);
+}
+.btnValid {
+    background-color: var(--green);
+    cursor: pointer;
+}
+
+@media(hover:hover) {
+    .btnValid:hover {
+        border: 2px solid black;
+    }
+}

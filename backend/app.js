@@ -7,8 +7,9 @@ const cors =require('cors');
 const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
-const {pushQuestion} = require('./server/models');
 const questions = require('./server/quiz.json');
+const quizRoutes = require('./routes/quizRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 const sess = {
@@ -22,8 +23,12 @@ const sess = {
         collection: 'sessions'
     }),
 };
+const corsOptions= {
+    origin: ['http://localhost:5173','http://localhost:5174', 'https://odinbook-production.up.railway.app'],
+    credentials: true,
+};
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -31,20 +36,16 @@ app.use(session(sess));
 app.use(passport.initialize());
 app.use(passport.session());
 
+//----Routes
+app.use('/', quizRoutes);
+app.use('/auth', authRoutes);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
-});
-
-const question= {
-    _id:123456789,
-    question:"This is a test question",
-    answers: [1,2,3,4],
-    submited: "me",
-}
-// pushQuestion(question);
-questions.forEach(async qu=> {
-    await pushQuestion(qu);
+    console.error('in 404');
+    console.log('url: ', req.url);
+  //next(createError(404));
+  res.sendStatus(404);
 });
 
 
@@ -56,7 +57,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  console.log('in error handler');
 });
 
 module.exports = app;
