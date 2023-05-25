@@ -102,7 +102,6 @@ async function checkSignup(req, res, next) {
 }
 
 async function generateTokens(req, res) {
-    console.log('user: ', req.user);
     //----Creating jwt
     const accessToken = generateAccessToken({email: req.user.email});
     const refreshToken = generateRefreshToken({email: req.user.email});

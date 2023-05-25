@@ -66,5 +66,19 @@ const PendingQuiz = mongoose.model(
     })
 );
 
+const FinishedQuiz = mongoose.model(
+    "FinishedQuiz",
+    new Schema({
+        email: { type: String, required: true },
+        started: { type: Date, required: true },
+        ended: { type: Date, required: true },
+        totalTime: { type: Number, required: true },
+        questionsID: {type: Array, required: true },
+        questionsTimestamp: {type: Array, required: true },
+        answersTimestamp: {type: Array, required: true },
+        score: {type: Array, required: true },
+    })
+);
 
-module.exports = {Question, Result, User, PendingQuiz};
+
+module.exports = {Question, Result, User, PendingQuiz, FinishedQuiz};

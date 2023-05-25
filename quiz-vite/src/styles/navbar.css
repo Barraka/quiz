@@ -1,0 +1,16 @@
+.logoWrapper {
+    font-size: 1.2rem;
+    background-color: rgb(138, 64, 145);
+    padding: 4px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 1.4s ease;
+    color: aliceblue;
+}
+
+.logoWrapper:hover {
+    background-color: rgb(160, 37, 172);
+}
+a {
+    text-decoration: none;
+}

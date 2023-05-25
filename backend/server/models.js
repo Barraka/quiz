@@ -1,4 +1,4 @@
-const { Question, Result, User, PendingQuiz } = require('./connect');
+const { Question, Result, User, PendingQuiz, FinishedQuiz } = require('./connect');
 
 async function pushQuestion(q) {
     try {
@@ -33,7 +33,8 @@ async function getNextQuestion(a) {
 
 async function getAnswer(q) {
     try {
-        const thisQ = await Question.findOne({_id: q._id});
+        const thisQ = await Question.findOne({_id: q});
+        if(!thisQ)return false;
         let correctIndex = thisQ.answers.findIndex(answer => answer.correct === true);
         return correctIndex;
 
@@ -67,7 +68,6 @@ async function findUserWithEmail(e) {
         const result = await User.findOne({email: e}).lean();
         delete result._id;
         delete result.password;
-        console.log('result: ', result);
         return result;
 
     } catch(err) { 
@@ -95,8 +95,9 @@ async function findGoogleID(id) {
 }
 
 async function startQuiz(u) {
-    const checkIfExists = await PendingQuiz.findOne({email: u.email});
-    if(checkIfExists) await PendingQuiz.deleteOne({email: u.email});
+    await PendingQuiz.findOneAndDelete({email: u.email});
+    // if(checkIfExists) await PendingQuiz.deleteOne({email: u.email});
+    
     try {
         const newQuiz= {
             email: u.email,
@@ -104,8 +105,8 @@ async function startQuiz(u) {
             questionsID: [],
             questionsTimestamp: [],
             answersTimestamp: [],
-            score: 0,
-        }
+            score: [],
+        };
         const result = await new PendingQuiz(newQuiz).save();
         return result;
     } catch(err) { 
@@ -120,7 +121,75 @@ async function getQuiz(u) {
 }
 
 async function updateQuiz(user, quiz) {
-    await PendingQuiz.replaceOne({email: u.email}, quiz);
+    delete quiz._id;
+    await PendingQuiz.replaceOne({email: user.email}, quiz);
 }
 
-module.exports = {pushQuestion, getNextQuestion, getAnswer, findUsername, findEmail, createNewUser, findGoogleID, findUserWithEmail, startQuiz, getQuiz, updateQuiz};
+async function pushFinishedQuiz(q) {
+    try {
+        const result = await new FinishedQuiz(q).save();
+        return result;
+    } catch(err) { 
+        console.error('Error: ', err);
+    }
+}
+
+async function compareScore(score) {
+    try {
+        const totalFinished = await FinishedQuiz.countDocuments();
+        console.log('totalFinished: ', totalFinished);
+    } catch(err) { 
+        console.error('Error: ', err);
+    }
+}
+
+async function getNumberOfCompletedQuizzes(user) {
+    try {
+        const total = await FinishedQuiz.countDocuments({email: user.email});
+        return total;
+    } catch(err) { 
+        console.error('Error: ', err);
+    }
+}
+
+async function getBestScore(user) {
+    try {
+        const rawData = await FinishedQuiz.aggregate([
+            { $match: { email: user.email } },
+            { $group: { _id: null, bestScore: { $max: { $sum: "$score" } } } }
+        ]);
+        const bestScore = rawData[0] ? rawData[0].bestScore : 0;
+        return bestScore;
+
+    } catch(err) { 
+        console.error('Error: ', err);
+    }    
+}
+
+async function getAverageScore(user) {
+    try {
+        const rawTotal = await FinishedQuiz.aggregate([
+            { $match: { email: user.email } },
+            { $group: { _id: null, averageScore: { $avg: { $sum: "$score" } } } }
+        ]);
+        const average = rawTotal[0] ? rawTotal[0].averageScore : 0;
+        return average;
+    } catch(err) { 
+        console.error('Error: ', err);
+    }
+}
+
+async function getBestTime(user) {
+    try {
+        const rawData = await FinishedQuiz.aggregate([
+            { $match: { email: user.email } },
+            { $group: { _id: null, bestTime: { $min: "$totalTime" } } }
+        ]);
+        const bestTime = rawData[0] ? rawData[0].bestTime : 0;
+        return bestTime;
+    } catch(err) { 
+        console.error('Error: ', err);
+    }
+}
+
+module.exports = {pushQuestion, getNextQuestion, getAnswer, findUsername, findEmail, createNewUser, findGoogleID, findUserWithEmail, startQuiz, getQuiz, updateQuiz, pushFinishedQuiz, getNumberOfCompletedQuizzes, getBestScore, getAverageScore, getBestTime};

@@ -11,17 +11,17 @@ function Intro(props) {
 
 
     return (
-        <div className='introWrapper'>
-            <div className="introText">
-                <div className="introTitle">RULES:</div>
-                <p>This is a javascript speed quiz.</p>
-                <p>You have <span className='textHighlight'>20 seconds</span>  per question.</p>
-                <p>There are <span className='textHighlight'>10 questions</span> in total.</p>
-                <p>Sign up to be able to register your score.</p>
+        <div className='flex flex-col justify-center w-fit mx-auto max-w-xs'>
+            <div className="text-left px-4 py-8 text-lg rounded-lg bg-slate-200 ">
+                <div className="text-xl bg-violet-900 font-bold rounded-lg text-slate-200 mb-4 text-center">RULES:</div>
+                <p className='py-1'>This is a javascript speed quiz.</p>
+                <p className='py-1'>You have <span className='rounded bg-violet-600 font-bold text-slate-200 px-2 py-1'>20 seconds</span>  per question.</p>
+                <p className='py-1'>There are <span className='rounded bg-violet-600 font-bold text-slate-200 px-2 py-1'>10 questions</span> in total.</p>
+                <p className='py-1 text-center pt-4'>Sign up to be able to register your score and submit new questions.</p>
                 
             </div>
-            <Link to="/quiz">
-                <button className='btnStart btn' >Start</button>
+            <Link to="/quiz" className='self-center mt-8' >
+                <button className=' bg-sky-700 text-white font-bold py-2 px-8 rounded hover:bg-sky-400 hover:text-sky-950 transition duration-300 text-2xl' >Start</button>
             </Link>
             
         </div>

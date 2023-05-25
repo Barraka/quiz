@@ -4,28 +4,34 @@ const jwt = require('jsonwebtoken');
 const { body, param, validationResult } = require("express-validator");
 const ObjectId = require('mongoose').Types.ObjectId;
 const {generateAccessToken, generateRefreshToken, verifyAccessToken, verifyRefreshToken} = require('../server/tokens');
-const { pushQuestion, getNextQuestion, getAnswer, findUsername, findEmail, findUserWithEmail, startQuiz, getQuiz, updateQuiz } = require('../server/models');
+const { pushQuestion, getNextQuestion, getAnswer, findUsername, findEmail, findUserWithEmail, startQuiz, getQuiz, updateQuiz, pushFinishedQuiz, getNumberOfCompletedQuizzes, getBestScore, getAverageScore, getBestTime } = require('../server/models');
 
 router.get('/home', authenticate, async (req, res) => {
-       const user = await findUserWithEmail(req.user.email);
-       if(!user)return res.sendStatus(404);
-       res.json(user);
+    console.log('user: ', req.user);
+    if(!req.user)return res.sendStatus(404);
+    const user = await findUserWithEmail(req.user.email);
+    if(!user)return res.sendStatus(404);
+    res.json(user);
 });
 
 
 router.post('/initquiz', authenticate, async (req, res) => {
-    const newQuiz = await startQuiz(req.user);
+    await startQuiz(req.user);
     res.sendStatus(200);
 });
 
 router.post('/getquestion', authenticate, async (req, res) => {
     let alreadyAnswered;
-    if(req.body.alreadyAnswered)alreadyAnswered = req.body.alreadyAnswered;
-    else {
-        const currentQuiz = await getQuiz(req.user);
-        alreadyAnswered= [...currentQuiz.questionsID];
-
+    let currentQuiz;
+    if(!req.user) {
+        alreadyAnswered = req.body.alreadyAnswered;
+        let nextQ = await getNextQuestion(alreadyAnswered);
+        return res.json({
+            question: nextQ,
+        }); 
     }
+    currentQuiz = await getQuiz(req.user);
+    alreadyAnswered= [...currentQuiz.questionsID];
     try {
         let nextQ = await getNextQuestion(alreadyAnswered);
         currentQuiz.questionsID.push(nextQ._id);
@@ -35,7 +41,7 @@ router.post('/getquestion', authenticate, async (req, res) => {
             question: nextQ,
         }); 
     } catch(err) { 
-        console.error('Error getting posts: ', err);
+        console.error('Error getting question: ', err);
     }
        
 });
@@ -60,16 +66,75 @@ router.post('/getanswer', authenticate, async (req, res) => {
             userQuiz.score.push(1);
         } else userQuiz.score.push(0);
         await updateQuiz(req.user, userQuiz);
+        //----Handle last question
+        if(lastQuestion.length===10) {
+            userQuiz.ended = new Date();
+            const userTime = userQuiz.ended.getTime() - userQuiz.started.getTime();
+            console.log('userTime: ', userTime);
+            userQuiz.totalTime = userTime;
+            pushFinishedQuiz(userQuiz);
+        }
+        else console.log('length : ', lastQuestion.length);
         res.json({
-            answer: answer,
+            answer: answerIndex,
         });
     }
     
 });
 
+ 
+router.get('/userstats', authorize, async (req, res) => {
+    const totalTaken = await getNumberOfCompletedQuizzes(req.user);
+    const bestScore = await getBestScore(req.user);
+    const average = await getAverageScore(req.user);
+    const bestTime = await getBestTime(req.user);
+    res.json({
+        totalTaken: totalTaken,
+        bestScore: bestScore,
+        average: average,
+        bestTime: bestTime,
+    });
+});
+
 
 
 function authenticate(req, res, next) {
+    const token = req.cookies.auth;
+    const currentRefresh = req.cookies.refreshToken;
+    if(!token && !currentRefresh)return next();
+    let newAccessToken;
+    let newRefreshToken;
+    let newUser;
+    let verifyAccessUser;
+    if(token)verifyAccessUser = verifyAccessToken(token);    
+    if(!verifyAccessUser) {
+        //----Try renewing access
+        newUser = verifyRefreshToken(currentRefresh);        
+        if(!newUser) return next();
+        delete newUser.iat;
+        delete newUser.exp;
+        newAccessToken = generateAccessToken(newUser);
+        newRefreshToken = generateRefreshToken(newUser);
+        req.user=newUser;
+        res.cookie('refreshToken', newRefreshToken, {
+            httpOnly: true, 
+            sameSite: 'None', secure: true, 
+            // domain: 'https://odinbook.up.railway.app',
+            maxAge: 1000 * 60 * 60 * 24 * 30,  //30 days
+        });
+        res.cookie('auth', newAccessToken, {
+            httpOnly: true, 
+            sameSite: 'None', secure: true, 
+            // domain: 'https://odinbook.up.railway.app',
+            maxAge: 1000 * 60 * 30, //30 min
+        });
+        return next();
+    }
+    req.user=verifyAccessUser;        
+    next();
+}
+
+function authorize(req, res, next) {
     const token = req.cookies.auth;
     const currentRefresh = req.cookies.refreshToken;
     if(!token && !currentRefresh)return res.sendStatus(200);

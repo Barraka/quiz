@@ -2,6 +2,7 @@ import { createContext, useContext,useState, useEffect } from 'react';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import Intro from './components/Intro'
 import './styles/styles.css';
+import './styles/index.css';
 import data from '../quiz_data2.json';
 import Quiz from './components/Quiz';
 import Score from './components/Score';
@@ -75,7 +76,7 @@ function App() {
     
 
     return (
-        <QuizContext.Provider value={{ quizTopic, setQuizTopic, launch, allQuestions, setOver, score, setScore, timer, setTimer, closeScore, displaySignup, closeSignup, user }}>
+        <QuizContext.Provider value={{ quizTopic, setQuizTopic, launch, allQuestions, over, setOver, score, setScore, timer, setTimer, closeScore, displaySignup, closeSignup, user }}>
             <Navbar />
             {/* {!displayQuiz && !over && !signup ? <Intro /> : null } */}
             {/* {displayQuiz ? <Quiz /> : null} */}
@@ -88,7 +89,7 @@ function App() {
                 <Route path="/signup" element={<Signup />} />     
                 <Route path="/login" element={<Login />} />  
                 <Route path="/quiz" element={<Quiz />} />     
-                <Route path="/score" element={<Score />} />    
+                {/* <Route path="/score" element={<Score />} />     */}
                 <Route path="/profile" element={<Profile />} />                          
                 
             </Routes>

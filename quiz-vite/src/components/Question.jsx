@@ -52,13 +52,15 @@ function Question(props) {
         console.log('postBody: ', postBody);
         const step1 = await fetch(host+'/getanswer', {
             method: "POST",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json",               
             },
             body: JSON.stringify(postBody),
         });;
         const data = await step1.json();
-        let correctIndex = data.answer.answers.findIndex(answer => answer.correct === true);
+        let correctIndex = data.answer;
+        console.log('correctIndex: ', correctIndex);
         const selectedRef = answerRefs.current[userAnswer];
         if(correctIndex===userAnswer) {
             selectedRef.current.classList.add("right");
