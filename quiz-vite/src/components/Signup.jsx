@@ -98,17 +98,20 @@ function Signup(props) {
 
         //----Display if error
         if(errorMessage) {
-            e.target.classList.remove('inputValid');
-            e.target.nextElementSibling.nextElementSibling.nextElementSibling.classList.remove('invalidHidden');
-            e.target.nextElementSibling.nextElementSibling.classList.add('checkmarkHidden');
-            e.target.classList.add('inputError');
+            e.target.classList.remove('fill-green-900', 'stroke-green-900');
+            e.target.nextElementSibling.nextElementSibling.nextElementSibling.classList.remove('scale-0');
+            e.target.nextElementSibling.nextElementSibling.classList.add('scale-0');
+            e.target.classList.add('outline-2', 'outline-red-800');
             e.target.nextElementSibling.innerText = errorMessage;
         }
         //----When no error
         else {
-            e.target.classList.remove('inputError');
+            //----Input outline invalid
+            e.target.classList.remove('outline-red-800');
+            //----Error icon & message
             e.target.nextElementSibling.nextElementSibling.nextElementSibling.classList.add('scale-0');
             e.target.nextElementSibling.innerText = '';
+            //----Input outline valid & icon
             e.target.classList.add('outline-2', 'outline-green-800');
             e.target.nextElementSibling.nextElementSibling.classList.remove('scale-0');
             if(e.target.name==='password' && e.target.value == confirmRef.current.value) {
@@ -123,14 +126,16 @@ function Signup(props) {
             }
         }
         //----Validate submit button when all fields have passed
-        if(usernameRef.current.classList.contains('inputValid') && 
-        emailRef.current.classList.contains('inputValid') &&
-        passwordRef.current.classList.contains('inputValid') &&
-        confirmRef.current.classList.contains('inputValid')) {
-            btnRef.current.classList.add('btnValid');
+        if(usernameRef.current.classList.contains('outline-green-800') && 
+        emailRef.current.classList.contains('outline-green-800') &&
+        passwordRef.current.classList.contains('outline-green-800') &&
+        confirmRef.current.classList.contains('outline-green-800')) {
+            btnRef.current.classList.remove('bg-sky-700');
+            btnRef.current.classList.add('bg-sky-700', 'hover:bg-sky-400', 'hover:text-sky-950');
             setValidate(true);
         } else { 
-            btnRef.current.classList.remove('btnValid');
+            btnRef.current.classList.remove('bg-sky-700', 'hover:bg-sky-400', 'hover:text-sky-950');
+            btnRef.current.classList.add('bg-slate-500');
             setValidate(false);
         }
     }
@@ -145,51 +150,55 @@ function Signup(props) {
             </Link>
             
             <form className="flex flex-col items-stretch gap-3">
+                
+                {/* input username */}
                 <div className="flex flex-col gap-4 relative text-center">
                     <label htmlFor="username">Username:</label>
-                    <input ref={usernameRef} className='rounded-lg outline-none border-none transition px-4 ' type="text" name="username" required minLength={5} maxLength={12} autoComplete='username' value={username} onChange={e=>setUsername(e.target.value)} onBlur={handleBlur} />
+                    <input ref={usernameRef} className='rounded-lg outline-none border-none transition transition-[outline] duration-500 px-6 text-center ' type="text" name="username" required minLength={5} maxLength={12} autoComplete='username' value={username} onChange={e=>setUsername(e.target.value)} onBlur={handleBlur} />
                     <div className="text-sm h-6">{errUsername}</div>                    
-                    <div ref={usernameValidRef} className="absolute fill-green-900 stroke-green-900 top-3 flex justify-center items-center bg-green-50 rounded-full scale-0">
+                    <div ref={usernameValidRef} className="absolute fill-green-900 stroke-green-900 top-1 flex justify-center items-center bg-green-50 rounded-full scale-0 transition duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="m429 720 238-237-51-51-187 186-85-84-51 51 136 135Zm51 240q-79 0-149-30t-122.5-82.5Q156 795 126 725T96 576q0-80 30-149.5t82.5-122Q261 252 331 222t149-30q80 0 149.5 30t122 82.5Q804 357 834 426.5T864 576q0 79-30 149t-82.5 122.5Q699 900 629.5 930T480 960Zm0-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z"/></svg>
                     </div>
-                    <div className="invalid invalidHidden">
+                    <div className="absolute fill-red-800 stroke-red-800 top-12 flex justify-center items-center transition bg-green-50 rounded-full scale-0 duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="m339 768 141-141 141 141 51-51-141-141 141-141-51-51-141 141-141-141-51 51 141 141-141 141 51 51Zm141 192q-79 0-149-30t-122.5-82.5Q156 795 126 725T96 576q0-80 30-149.5t82.5-122Q261 252 331 222t149-30q80 0 149.5 30t122 82.5Q804 357 834 426.5T864 576q0 79-30 149t-82.5 122.5Q699 900 629.5 930T480 960Zm0-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z"/></svg>
                     </div>
                 </div>
-                <div className="formGroup">
+
+                {/* input email */}
+                <div className="flex flex-col gap-4 relative text-center">
                     <label htmlFor="email">Email:</label>
-                    <input ref={emailRef} className='signupInput' type="email" name="email" required autoComplete='email' value={email} onChange={e=>setEmail(e.target.value)} onBlur={handleBlur} />
-                    <div className="errorOutput">{errEmail}</div>
-                    <div className="checkmark checkmarkHidden">
+                    <input ref={emailRef} className='rounded-lg outline-none border-none transition transition-[outline] duration-500 px-6 text-center' type="email" name="email" required autoComplete='email' value={email} onChange={e=>setEmail(e.target.value)} onBlur={handleBlur} />
+                    <div className="text-sm h-6">{errEmail}</div>
+                    <div className="absolute fill-green-900 stroke-green-900 top-1 flex justify-center items-center bg-green-50 rounded-full scale-0 transition duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="m429 720 238-237-51-51-187 186-85-84-51 51 136 135Zm51 240q-79 0-149-30t-122.5-82.5Q156 795 126 725T96 576q0-80 30-149.5t82.5-122Q261 252 331 222t149-30q80 0 149.5 30t122 82.5Q804 357 834 426.5T864 576q0 79-30 149t-82.5 122.5Q699 900 629.5 930T480 960Zm0-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z"/></svg>
                     </div>
-                    <div className="invalid invalidHidden">
+                    <div className="absolute fill-red-800 stroke-red-800 top-12 flex justify-center items-center transition bg-green-50 rounded-full scale-0 duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="m339 768 141-141 141 141 51-51-141-141 141-141-51-51-141 141-141-141-51 51 141 141-141 141 51 51Zm141 192q-79 0-149-30t-122.5-82.5Q156 795 126 725T96 576q0-80 30-149.5t82.5-122Q261 252 331 222t149-30q80 0 149.5 30t122 82.5Q804 357 834 426.5T864 576q0 79-30 149t-82.5 122.5Q699 900 629.5 930T480 960Zm0-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z"/></svg>
                     </div>
                 </div>
-                <div className="formGroup">
+                <div className="flex flex-col gap-4 relative text-center">
                     <label htmlFor="password">Password:</label>
-                    <input ref={passwordRef} className='signupInput' type="password" name="password" required autoComplete='password' value={password} onChange={e=>setPassword(e.target.value)} onBlur={handleBlur} />
-                    <div className="errorOutput">{errPassword}</div>
-                    <div className="checkmark checkmarkHidden">
+                    <input ref={passwordRef} className='rounded-lg outline-none border-none transition transition-[outline] duration-500 px-6 text-center' type="password" name="password" required autoComplete='password' value={password} onChange={e=>setPassword(e.target.value)} onBlur={handleBlur} />
+                    <div className="text-sm h-6">{errPassword}</div>
+                    <div className="absolute fill-green-900 stroke-green-900 top-1 flex justify-center items-center bg-green-50 rounded-full scale-0 transition duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="m429 720 238-237-51-51-187 186-85-84-51 51 136 135Zm51 240q-79 0-149-30t-122.5-82.5Q156 795 126 725T96 576q0-80 30-149.5t82.5-122Q261 252 331 222t149-30q80 0 149.5 30t122 82.5Q804 357 834 426.5T864 576q0 79-30 149t-82.5 122.5Q699 900 629.5 930T480 960Zm0-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z"/></svg>
                     </div>
-                    <div className="invalid invalidHidden">
+                    <div className="absolute fill-red-800 stroke-red-800 top-12 flex justify-center items-center transition bg-green-50 rounded-full scale-0 duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="m339 768 141-141 141 141 51-51-141-141 141-141-51-51-141 141-141-141-51 51 141 141-141 141 51 51Zm141 192q-79 0-149-30t-122.5-82.5Q156 795 126 725T96 576q0-80 30-149.5t82.5-122Q261 252 331 222t149-30q80 0 149.5 30t122 82.5Q804 357 834 426.5T864 576q0 79-30 149t-82.5 122.5Q699 900 629.5 930T480 960Zm0-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z"/></svg>
                     </div>
                 </div>
-                <div className="formGroup">
+                <div className="flex flex-col gap-4 relative text-center">
                     <label htmlFor="confirm">Confirm password:</label>
-                    <input ref={confirmRef} className='signupInput' type="password" name="confirm" required autoComplete='password' value={confirm} onChange={e=>setConfirm(e.target.value)} onBlur={handleBlur} />
-                    <div className="errorOutput">{errConfirm}</div>
-                    <div className="checkmark checkmarkHidden">
+                    <input ref={confirmRef} className='rounded-lg outline-none border-none transition transition-[outline] duration-500 px-6 text-center' type="password" name="confirm" required autoComplete='password' value={confirm} onChange={e=>setConfirm(e.target.value)} onBlur={handleBlur} />
+                    <div className="text-sm h-6">{errConfirm}</div>
+                    <div className="absolute fill-green-900 stroke-green-900 top-1 flex justify-center items-center bg-green-50 rounded-full scale-0 transition duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="m429 720 238-237-51-51-187 186-85-84-51 51 136 135Zm51 240q-79 0-149-30t-122.5-82.5Q156 795 126 725T96 576q0-80 30-149.5t82.5-122Q261 252 331 222t149-30q80 0 149.5 30t122 82.5Q804 357 834 426.5T864 576q0 79-30 149t-82.5 122.5Q699 900 629.5 930T480 960Zm0-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z"/></svg>
                     </div>
-                    <div className="invalid invalidHidden">
+                    <div className="absolute fill-red-800 stroke-red-800 top-12 flex justify-center items-center transition bg-green-50 rounded-full scale-0 duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20"><path d="m339 768 141-141 141 141 51-51-141-141 141-141-51-51-141 141-141-141-51 51 141 141-141 141 51 51Zm141 192q-79 0-149-30t-122.5-82.5Q156 795 126 725T96 576q0-80 30-149.5t82.5-122Q261 252 331 222t149-30q80 0 149.5 30t122 82.5Q804 357 834 426.5T864 576q0 79-30 149t-82.5 122.5Q699 900 629.5 930T480 960Zm0-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z"/></svg>
                     </div>
                 </div>
-                <button ref={btnRef} type="submit" className='btn btnSignup' onClick={submit} >Submit</button>
+                <button ref={btnRef} type="submit" className='bg-slate-500 text-white font-bold py-2 px-8 rounded  transition duration-300 text-2xl' onClick={submit} >Submit</button>
             </form>
         </div>
     )

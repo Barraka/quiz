@@ -31,10 +31,10 @@ function Question(props) {
         if(timer==0 || choice)return;
         for(let k=0; k<answerRefs.current.length;k++) {
             const selectedRef = answerRefs.current[k];
-            selectedRef.current.classList.remove("userSelected");
+            selectedRef.current.classList.remove("outline-cyan-700", 'outline-2');
         }
         const selectedRef = answerRefs.current[i];
-        selectedRef.current.classList.add("userSelected");
+        selectedRef.current.classList.add("outline-cyan-700", 'outline-2');
         setUserAnswer(i);
     }
 
@@ -63,12 +63,12 @@ function Question(props) {
         console.log('correctIndex: ', correctIndex);
         const selectedRef = answerRefs.current[userAnswer];
         if(correctIndex===userAnswer) {
-            selectedRef.current.classList.add("right");
+            selectedRef.current.classList.add("bg-green-600");
             props.incrementScore();
         }
         else {
-            selectedRef.current.classList.add("wrong"); 
-            answerRefs.current[correctIndex].current.classList.add('corrected');
+            selectedRef.current.classList.add("bg-red-600"); 
+            answerRefs.current[correctIndex].current.classList.add('bg-green-600');
         }
         setUserAnswer(-1);
         setNext(true);
@@ -76,39 +76,39 @@ function Question(props) {
 
 
     return (
-        <div className='questionWrapper'>
-            <div ref={timerRef} className="questionTimer">
+        <div className='flex flex-col justify-center items-center text-center bg-violet-200 px-x py-4 rounded-lg gap-4 min-w-50vw w-4 '>
+            <div ref={timerRef} className="px-4 py-4 rounded-lg bg-slate-400 w-20">
                 {timer}s
             </div>
-            {timer===0 ? <div className="tooLate">Too late!</div> : null}
+            {timer===0 ? <div className="px-2 py-4 rounded-lg bg-slate-400 w-20 ">Too late!</div> : null}
             
-            <div className="question">
+            <div className="px-2 py-4 rounded-lg bg-slate-200 text-lg">
                 {props.data.question} 
             </div>
             {props.data.code ? 
-                <div className="code">
-                    <pre>
+                <div className="self-stretch bg-slate-200 overflow-x-scroll ">
+                    <pre className='w-4'>
                         {props.data.code}
                     </pre>                
                 </div>  
             : null}
             
 
-            <div className="answers">
+            <div className="my-auto flex justify-center items-stretch flex-col gap-4 px-2 py-4 rounded-lg bg-slate-200 min-w-200 text-lg">
                 {props.data.answers?.map((x,i)=>{
                     const answerRef = useRef(null);
                     answerRefs.current[i] = answerRef;
                     return (
                         
-                        <div ref={answerRef} key={i} className="answerItem" onClick={e=>selectAnswer(i)} >
-                            <div  className="answerText" >{x.answer}</div>
+                        <div ref={answerRef} key={i} className="flex cursor-pointer justify-start items-center gap-4 rounded-lg px-2 py-4 outline-1 outline-dotted outline-violet-950 hover:bg-slate-50 transition duration-300" onClick={e=>selectAnswer(i)} >
+                            <div >{x.answer}</div>
                         </div>
                     )}
                 )}
                 
             </div>
-            {userAnswer > -1 ? <button className='btnConfirm' onClick={handleAnswer}>Confirm</button> : null}
-            {next ? <button className='btnConfirm' onClick={e=>props.next()}>Next</button> : null}
+            {userAnswer > -1 ? <button className='bg-sky-700 text-white font-bold py-2 px-8 rounded hover:bg-sky-400 hover:text-sky-950 transition duration-300 text-1xl' onClick={handleAnswer}>Confirm</button> : null}
+            {next ? <button className='bg-sky-700 text-white font-bold py-2 px-8 rounded hover:bg-sky-400 hover:text-sky-950 transition duration-300 text-1xl' onClick={e=>props.next()}>Next</button> : null}
         </div>
     )
 }

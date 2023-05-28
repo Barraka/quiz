@@ -90,17 +90,17 @@ function Quiz(props) {
     
 
     return (
-        <div className='quizWrapper'>
+        <div className='flex flex-col gap-6 justify-center items-center'>
             {over && <Result />}
             {!over && 
-            <div className="quizText">
-                <div className="questionCounter">
+            <div className="text-pu-950 text-lg px-2 py-6 rounded-lg text-center min-w-50vw bg-violet-200">
+                <div>
                     Question: {qCounter} / 10
                 </div>
-                <div className="score">
+                <div>
                     Score: {score}
                 </div>
-                <div className="timer">Total time: {formatTime(timer)}</div>
+                <div>Total time: {formatTime(timer)}</div>
             </div>
             }
             
