@@ -5,12 +5,13 @@ import './styles/styles.css';
 import './styles/index.css';
 import data from '../quiz_data2.json';
 import Quiz from './components/Quiz';
-import Score from './components/Score';
 import Navbar from './components/Navbar';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Profile from './components/Profile';
 import host from './host';
+import Leaderboard from './components/Leaderboard';
+import Placeholder from './components/Placeholder';
 
 const QuizContext = createContext('info');
 
@@ -78,6 +79,7 @@ function App() {
     return (
         <QuizContext.Provider value={{ quizTopic, setQuizTopic, launch, allQuestions, over, setOver, score, setScore, timer, setTimer, closeScore, displaySignup, closeSignup, user }}>
             <Navbar />
+            <Placeholder />
             {/* {!displayQuiz && !over && !signup ? <Intro /> : null } */}
             {/* {displayQuiz ? <Quiz /> : null} */}
             {/* {over ? <Score /> : null}   */}
@@ -89,8 +91,8 @@ function App() {
                 <Route path="/signup" element={<Signup />} />     
                 <Route path="/login" element={<Login />} />  
                 <Route path="/quiz" element={<Quiz />} />     
-                {/* <Route path="/score" element={<Score />} />     */}
-                <Route path="/profile" element={<Profile />} />                          
+                <Route path="/profile" element={<Profile />} />     
+                <Route path="/leaderboard" element={<Leaderboard />} />                       
                 
             </Routes>
             

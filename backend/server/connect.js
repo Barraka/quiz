@@ -77,6 +77,8 @@ const FinishedQuiz = mongoose.model(
         questionsTimestamp: {type: Array, required: true },
         answersTimestamp: {type: Array, required: true },
         score: {type: Array, required: true },
+        totalScore: { type: Number, required: true },
+
     })
 );
 

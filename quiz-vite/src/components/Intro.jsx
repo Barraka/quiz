@@ -17,7 +17,7 @@ function Intro(props) {
                 <p className='py-1'>This is a javascript speed quiz.</p>
                 <p className='py-1'>You have <span className='rounded bg-violet-600 font-bold text-slate-200 px-2 py-1'>20 seconds</span>  per question.</p>
                 <p className='py-1'>There are <span className='rounded bg-violet-600 font-bold text-slate-200 px-2 py-1'>10 questions</span> in total.</p>
-                <p className='py-1 text-center pt-4'>Sign up to be able to register your score and submit new questions.</p>
+                <p className='py-1 text-center pt-4'>Sign up to be able to register your score.</p>
                 
             </div>
             <Link to="/quiz" className='self-center mt-8' >

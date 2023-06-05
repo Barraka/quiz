@@ -76,8 +76,8 @@ function Question(props) {
 
 
     return (
-        <div className='flex flex-col justify-center items-center text-center bg-violet-200 px-x py-4 rounded-lg gap-4 min-w-50vw w-4 '>
-            <div ref={timerRef} className="px-4 py-4 rounded-lg bg-slate-400 w-20">
+        <div className='flex flex-col justify-center items-center text-center bg-violet-200 px-x py-4 rounded-lg gap-4 min-w-50vw w-4 mb-16 pb-16 select-none'>
+            <div ref={timerRef} className="px-4 py-4 rounded-lg bg-blue-200 w-20">
                 {timer}s
             </div>
             {timer===0 ? <div className="px-2 py-4 rounded-lg bg-slate-400 w-20 ">Too late!</div> : null}
@@ -86,8 +86,8 @@ function Question(props) {
                 {props.data.question} 
             </div>
             {props.data.code ? 
-                <div className="self-stretch bg-slate-200 overflow-x-scroll ">
-                    <pre className='w-4'>
+                <div className="self-stretch  overflow-x-scroll bg-blue-200">
+                    <pre className='px-4 bg-transparent'>
                         {props.data.code}
                     </pre>                
                 </div>  

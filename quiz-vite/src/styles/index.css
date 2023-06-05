@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+dialog::backdrop {
+    background: rgb(196, 166, 209);
+  }

@@ -1,0 +1,466 @@
+[
+    {
+        "id": "Qgpt1",
+        "question": "Which of the following is not a reserved word in JavaScript?",
+        "code": "",
+        "answers": [
+          {
+            "answer": "interface",
+            "correct": false
+          },
+          {
+            "answer": "throws",
+            "correct": false
+          },
+          {
+            "answer": "program",
+            "correct": true
+          },
+          {
+            "answer": "short",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "Qgpt2",
+        "question": "What will be the output of the following JavaScript code?",
+        "code": "\r\nconsole.log(typeof typeof 1);\r\n",
+        "answers": [
+          {
+            "answer": "'number'",
+            "correct": false
+          },
+          {
+            "answer": "'string'",
+            "correct": true
+          },
+          {
+            "answer": "'boolean'",
+            "correct": false
+          },
+          {
+            "answer": "'object'",
+            "correct": false
+          }
+        ]
+      },    
+      {
+        "id": "Qgpt3",
+        "question": "Which statement is correct about JavaScript's 'strict mode'?",
+        "code": "",
+        "answers": [
+          {
+            "answer": "It makes no difference in the code execution.",
+            "correct": false
+          },
+          {
+            "answer": "It allows silent errors to throw errors.",
+            "correct": true
+          },
+          {
+            "answer": "It enables additional JavaScript features.",
+            "correct": false
+          },
+          {
+            "answer": "It is the default mode of JavaScript.",
+            "correct": false
+          }
+        ]
+      },    
+      {
+        "id": "Qgpt4",
+        "question": "What value does `null == undefined` return?",
+        "code": "",
+        "answers": [
+          {
+            "answer": "true",
+            "correct": true
+          },
+          {
+            "answer": "false",
+            "correct": false
+          },
+          {
+            "answer": "null",
+            "correct": false
+          },
+          {
+            "answer": "undefined",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "Qgpt5",
+        "question": "What will be the output of the following JavaScript code?",
+        "code": "\r\nconsole.log(0.1 + 0.2 === 0.3);\r\n",
+        "answers": [
+          {
+            "answer": "true",
+            "correct": false
+          },
+          {
+            "answer": "false",
+            "correct": true
+          },
+          {
+            "answer": "null",
+            "correct": false
+          },
+          {
+            "answer": "'0.3'",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "Qgpt6",
+        "question": "Which method in an Array is used to remove the last element and return that element?",
+        "code": "",
+        "answers": [
+          {
+            "answer": "pop()",
+            "correct": true
+          },
+          {
+            "answer": "push()",
+            "correct": false
+          },
+          {
+            "answer": "shift()",
+            "correct": false
+          },
+          {
+            "answer": "unshift()",
+            "correct": false
+          }
+        ]
+    },
+    {
+        "id": "Qgpt7",
+        "question": "Which of the following is not a JavaScript Data Type?",
+        "code": "",
+        "answers": [
+          {
+            "answer": "Undefined",
+            "correct": false
+          },
+          {
+            "answer": "Number",
+            "correct": false
+          },
+          {
+            "answer": "Boolean",
+            "correct": false
+          },
+          {
+            "answer": "Character",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "id": "Qgpt8",
+        "question": "What will be the output of the following JavaScript code?",
+        "code": "\r\nconsole.log('2' + 2);\r\n",
+        "answers": [
+          {
+            "answer": "4",
+            "correct": false
+          },
+          {
+            "answer": "'22'",
+            "correct": true
+          },
+          {
+            "answer": "undefined",
+            "correct": false
+          },
+          {
+            "answer": "NaN",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "Qgpt9",
+        "question": "What is a 'callback' function in JavaScript?",
+        "code": "",
+        "answers": [
+          {
+            "answer": "A function that runs after another function has finished.",
+            "correct": true
+          },
+          {
+            "answer": "A function that loops through an array.",
+            "correct": false
+          },
+          {
+            "answer": "A function that runs before another function.",
+            "correct": false
+          },
+          {
+            "answer": "A function that always returns 'undefined'.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "Qgpt10",
+        "question": "What will be the output of the following JavaScript code?",
+        "code": "\r\nconsole.log([1] == [1]);\r\n",
+        "answers": [
+          {
+            "answer": "true",
+            "correct": false
+          },
+          {
+            "answer": "false",
+            "correct": true
+          },
+          {
+            "answer": "1",
+            "correct": false
+          },
+          {
+            "answer": "'[1]'",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "Qgpt11",
+        "question": "What is the use of 'this' keyword in JavaScript?",
+        "code": "",
+        "answers": [
+          {
+            "answer": "It refers to the global object.",
+            "correct": false
+          },
+          {
+            "answer": "It refers to the function itself.",
+            "correct": false
+          },
+          {
+            "answer": "It refers to the context in which a function is called.",
+            "correct": true
+          },
+          {
+            "answer": "It refers to the first parameter passed to the function.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "Qgpt12",
+        "question": "What will be the output of the following JavaScript code?",
+        "code": "\r\nlet foo = {n: 1};\r\nlet bar = foo;\r\nfoo.x = foo = {n: 2};\r\nconsole.log(foo.x);\r\nconsole.log(bar.x);\r\n",
+        "answers": [
+          {
+            "answer": "undefined\nundefined",
+            "correct": false
+          },
+          {
+            "answer": "undefined\n{ n: 2 }",
+            "correct": true
+          },
+          {
+            "answer": "{ n: 2 }\nundefined",
+            "correct": false
+          },
+          {
+            "answer": "{ n: 2 }\n{ n: 2 }",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "Qgpt13",
+        "question": "What will be the output of the following JavaScript code?",
+        "code": "\r\nconsole.log(1 < 2 < 3);\r\nconsole.log(3 > 2 > 1);\r\n",
+        "answers": [
+          {
+            "answer": "true\ntrue",
+            "correct": false
+          },
+          {
+            "answer": "false\nfalse",
+            "correct": false
+          },
+          {
+            "answer": "true\nfalse",
+            "correct": true
+          },
+          {
+            "answer": "false\ntrue",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "Qgpt14",
+        "question": "What is 'closure' in JavaScript?",
+        "code": "",
+        "answers": [
+          {
+            "answer": "A closed function that cannot be invoked.",
+            "correct": false
+          },
+          {
+            "answer": "A function with private variables.",
+            "correct": true
+          },
+          {
+            "answer": "A method to close a webpage.",
+            "correct": false
+          },
+          {
+            "answer": "A way to end a function's execution.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "Qgpt15",
+        "question": "Which method is used to encode a URL in JavaScript?",
+        "code": "",
+        "answers": [
+          {
+            "answer": "encodeURI()",
+            "correct": true
+          },
+          {
+            "answer": "encryptURI()",
+            "correct": false
+          },
+          {
+            "answer": "secureURI()",
+            "correct": false
+          },
+          {
+            "answer": "lockURI()",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "Qgpt16",
+        "question": "What is a Promise in JavaScript?",
+        "code": "",
+        "answers": [
+          {
+            "answer": "A data type that holds multiple values at once.",
+            "correct": false
+          },
+          {
+            "answer": "A function that runs asynchronously.",
+            "correct": false
+          },
+          {
+            "answer": "An object that may produce a single value some time in the future.",
+            "correct": true
+          },
+          {
+            "answer": "A method to pause the execution of a function.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "Qgpt17",
+        "question": "What will be the output of the following JavaScript code?",
+        "code": "\r\nclass Car {\r\n  constructor(name) {\r\n    this.name = name;\r\n  }\r\n}\r\n\r\nlet myCar = new Car('Ford');\r\nconsole.log(myCar.name);\r\n",
+        "answers": [
+          {
+            "answer": "'Car'",
+            "correct": false
+          },
+          {
+            "answer": "'Ford'",
+            "correct": true
+          },
+          {
+            "answer": "undefined",
+            "correct": false
+          },
+          {
+            "answer": "null",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "Qgpt18",
+        "question": "What is the purpose of the `super` keyword in JavaScript classes?",
+        "code": "",
+        "answers": [
+          {
+            "answer": "It calls the constructor of the parent class.",
+            "correct": true
+          },
+          {
+            "answer": "It creates a new instance of the class.",
+            "correct": false
+          },
+          {
+            "answer": "It refers to the current instance of the class.",
+            "correct": false
+          },
+          {
+            "answer": "It refers to the class itself.",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "Qgpt19",
+        "question": "What will be the output of the following JavaScript code?",
+        "code": "\r\nlet promise = new Promise(function(resolve, reject) {\r\n  resolve('Promise Resolved');\r\n});\r\n\r\npromise.then(function(value) {\r\n  console.log(value);\r\n});\r\n",
+        "answers": [
+          {
+            "answer": "'Promise Resolved'",
+            "correct": true
+          },
+          {
+            "answer": "'Promise Rejected'",
+            "correct": false
+          },
+          {
+            "answer": "undefined",
+            "correct": false
+          },
+          {
+            "answer": "null",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "id": "Qgpt20",
+        "question": "What is the `async` keyword used for in JavaScript?",
+        "code": "",
+        "answers": [
+          {
+            "answer": "It makes a function return a Promise.",
+            "correct": true
+          },
+          {
+            "answer": "It pauses the execution of a function.",
+            "correct": false
+          },
+          {
+            "answer": "It enables multithreading in JavaScript.",
+            "correct": false
+          },
+          {
+            "answer": "It is used to handle exceptions in Promise chains.",
+            "correct": false
+          }
+        ]
+      }
+    
+    
+  
+    
+]

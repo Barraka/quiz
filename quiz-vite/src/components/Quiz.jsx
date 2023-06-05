@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useContext } from 'react'
+import React, { useEffect, useState, useRef, useContext } from 'react';
 import Question from './Question';
 import {QuizContext} from '../App';
 import host from '../host';
@@ -12,8 +12,7 @@ function Quiz(props) {
     const timerInterval = useRef();
 
     useEffect(()=>{
-        initQuiz();
-        
+        initQuiz();        
         //----Reset previous states
         setOver(false);
         setTimer(0);
@@ -23,8 +22,9 @@ function Quiz(props) {
             setTimer(prev=>prev+1);
         },1000);
         return ()=> {
-            clearInterval(timerInterval);
+            clearInterval(timerInterval.current);
         }
+        
     },[]);
     
     useEffect(()=>{
@@ -32,7 +32,7 @@ function Quiz(props) {
     },[qCounter]);
 
     async function initQuiz() {
-        const step1 = await fetch(host+'/initquiz', {
+        await fetch(host+'/initquiz', {
             method: "POST",
             credentials: 'include',
         });
@@ -41,10 +41,10 @@ function Quiz(props) {
 
     async function nextQuestion() {
         setCurrentQuestion(null);
+        
         if(qCounter===10) {
             clearInterval(timerInterval.current);
             setOver(true);
-            
             return;
         }
         setQCounter(prev=>prev+1);
@@ -63,19 +63,6 @@ function Quiz(props) {
         setCurrentQuestion(step2.question);
     }
 
-    // function chooseQuestion() {
-    //     setCurrentQuestion(null);
-    //     if(qCounter===10) {
-    //         setOver(true);
-    //         return;
-    //     }
-    //     setQCounter(prev=>prev+1);
-    //     console.log('qCounter: ', qCounter);
-    //     const randQ = Math.floor(Math.random() * allQuestions.length);
-    //     const currentQ = allQuestions[randQ];
-    //     console.log('currentQ: ', currentQ);       
-    // }
-
     function incrementScore() {
         setScore(prev=>prev+1);
         console.log('score: ', score);
@@ -93,7 +80,7 @@ function Quiz(props) {
         <div className='flex flex-col gap-6 justify-center items-center'>
             {over && <Result />}
             {!over && 
-            <div className="text-pu-950 text-lg px-2 py-6 rounded-lg text-center min-w-50vw bg-violet-200">
+            <div className="text-pu-950 text-lg px-2 py-6 rounded-lg text-center min-w-50vw bg-violet-200 mb-4">
                 <div>
                     Question: {qCounter} / 10
                 </div>

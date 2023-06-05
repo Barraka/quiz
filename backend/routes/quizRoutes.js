@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const { body, param, validationResult } = require("express-validator");
 const ObjectId = require('mongoose').Types.ObjectId;
 const {generateAccessToken, generateRefreshToken, verifyAccessToken, verifyRefreshToken} = require('../server/tokens');
-const { pushQuestion, getNextQuestion, getAnswer, findUsername, findEmail, findUserWithEmail, startQuiz, getQuiz, updateQuiz, pushFinishedQuiz, getNumberOfCompletedQuizzes, getBestScore, getAverageScore, getBestTime } = require('../server/models');
+const { pushQuestion, getNextQuestion, getAnswer, findUsername, findEmail, findUserWithEmail, startQuiz, getQuiz, updateQuiz, pushFinishedQuiz, getNumberOfCompletedQuizzes, getBestScore, getAverageScore, getBestTime, getTopTen } = require('../server/models');
 
 router.get('/home', authenticate, async (req, res) => {
     console.log('user: ', req.user);
@@ -70,8 +71,9 @@ router.post('/getanswer', authenticate, async (req, res) => {
         if(lastQuestion.length===10) {
             userQuiz.ended = new Date();
             const userTime = userQuiz.ended.getTime() - userQuiz.started.getTime();
-            console.log('userTime: ', userTime);
             userQuiz.totalTime = userTime;
+            const totalScore=userQuiz.score.reduce((a,b)=>a+b,0);
+            userQuiz.totalScore=totalScore;
             pushFinishedQuiz(userQuiz);
         }
         else console.log('length : ', lastQuestion.length);
@@ -93,6 +95,13 @@ router.get('/userstats', authorize, async (req, res) => {
         bestScore: bestScore,
         average: average,
         bestTime: bestTime,
+    });
+});
+
+router.get('/leaderboard', authorize, async (req, res) => {
+    const ladder = await getTopTen();
+    res.json({
+        ladder: ladder,
     });
 });
 
@@ -169,5 +178,25 @@ function authorize(req, res, next) {
     req.user=verifyAccessUser;        
     next();
 }
+
+async function addGptQuestions() {
+    fs.readFile('questions.json', 'utf8', async (err, data) => {
+        if (err) {          
+          return console.error(err);
+        }
+    
+        try {
+          const jsonData = JSON.parse(data);
+          console.log('jsonData: ', jsonData);
+          for(let i=0;i<jsonData.length;i++) {
+            const result = await pushQuestion(jsonData[i]);
+            console.log('result: ', result);
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      });
+}
+addGptQuestions();
 
 module.exports = router;

@@ -1,5 +1,8 @@
 const { Question, Result, User, PendingQuiz, FinishedQuiz } = require('./connect');
 
+let cachedLeaderboard=[];
+let cachedQuestions=[];
+
 async function pushQuestion(q) {
     try {
         const newQuestion= {};
@@ -17,7 +20,19 @@ async function pushQuestion(q) {
 }
 
 async function getNextQuestion(a) {
+    const total = cachedQuestions.length;
+    if(total) {
+        console.log('getting question from cache');
+        const unansweredQuestions = cachedQuestions.filter(question => {
+            return !a.includes(question._id);
+        });
+        const randomIndex = Math.floor(Math.random() * unansweredQuestions.length);
+        const randomQuestion = unansweredQuestions[randomIndex];
+        return randomQuestion;
+    }
     try {
+        const allQuestions = await Question.find();
+        cachedQuestions=[...allQuestions];
         const randomQ = await Question.aggregate([
             { $match: { _id: { $nin: a } } },
             { $sample: { size: 1 } },
@@ -128,6 +143,11 @@ async function updateQuiz(user, quiz) {
 async function pushFinishedQuiz(q) {
     try {
         const result = await new FinishedQuiz(q).save();
+        if(cachedLeaderboard.length) {
+            const lastTopScore=cachedLeaderboard[cachedLeaderboard.length-1].totalScore;
+            if(q.totalScore>lastTopScore)getTopTen(true);
+        }
+        
         return result;
     } catch(err) { 
         console.error('Error: ', err);
@@ -192,4 +212,36 @@ async function getBestTime(user) {
     }
 }
 
-module.exports = {pushQuestion, getNextQuestion, getAnswer, findUsername, findEmail, createNewUser, findGoogleID, findUserWithEmail, startQuiz, getQuiz, updateQuiz, pushFinishedQuiz, getNumberOfCompletedQuizzes, getBestScore, getAverageScore, getBestTime};
+async function getTopTen(update=false) {
+    try {
+        if(cachedLeaderboard.length && !update) {
+            console.log('cache exists');
+            const updatedTotal = await Promise.all(
+                cachedLeaderboard.map(async (x) => {
+                    const uname = await User.findOne({email: x.email});
+                    console.log('uname: ', uname);
+                    x.username = uname.username;
+                    return x;
+                })
+            );
+            return updatedTotal;
+        }
+
+        const rawTotal = await FinishedQuiz.find().sort({ totalScore: -1 }).limit(5);
+        console.log('no cache');
+        const updatedTotal = await Promise.all(rawTotal.map(async (item) => {
+            const { email } = item;
+            const  user = await findUserWithEmail(email);    
+            const normalObject = item.toObject();       
+            return { ...normalObject, username:user.username };
+        }));
+
+        console.log('updatedTotal: ', updatedTotal[0]);
+        cachedLeaderboard=[...updatedTotal];
+        return updatedTotal;
+    } catch(err) { 
+        console.error('Error: ', err);
+    }
+}
+
+module.exports = {pushQuestion, getNextQuestion, getAnswer, findUsername, findEmail, createNewUser, findGoogleID, findUserWithEmail, startQuiz, getQuiz, updateQuiz, pushFinishedQuiz, getNumberOfCompletedQuizzes, getBestScore, getAverageScore, getBestTime, getTopTen};
