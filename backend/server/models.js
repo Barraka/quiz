@@ -110,8 +110,11 @@ async function findGoogleID(id) {
 }
 
 async function startQuiz(u) {
-    await PendingQuiz.findOneAndDelete({email: u.email});
-    // if(checkIfExists) await PendingQuiz.deleteOne({email: u.email});
+    if(u) {
+        await PendingQuiz.findOneAndDelete({email: u.email});
+    }
+    
+
     
     try {
         const newQuiz= {

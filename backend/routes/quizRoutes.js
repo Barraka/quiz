@@ -197,6 +197,6 @@ async function addGptQuestions() {
         }
       });
 }
-addGptQuestions();
+// addGptQuestions();
 
 module.exports = router;
